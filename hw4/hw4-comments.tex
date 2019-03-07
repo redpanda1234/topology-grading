@@ -1,0 +1,83 @@
+\documentclass{fkpset}
+
+\name{Forest Kobayashi}
+\class{Topology}
+\duedate{03/03/2019}
+\assignment{HW 4 Comments}
+
+\chead{HW 4 Comments}
+\rhead{Math 147 -- Spring 2019}
+
+\usepackage{hyperref}
+\usepackage{fkmisc}
+
+\begin{document}
+Announcements:
+\begin{itemize}
+  \item Send errata to me
+  \item When2Meet for writing style tutoring stuff
+\end{itemize}
+
+\section{Writing Style Comments}
+\begin{problem}[A1]
+  TL;DR --- Don't be afraid to introduce new notation if you feel it's helpful.
+  But if you choose to do so, you should \emph{define it explicitly} at the
+  beginning of your proof.\\
+
+  Here's an example. In a problem like 4.31, you might consider using angled
+  brackets to distinguish points from intervals. E.g., you could use $\ip{a,b}$
+  to denote a point in $\RR^2$, and $\pn{a,b}$ to denote the interval $\pn{a,b}
+  \subset \RR$ (In \LaTeX, $\ip{a,b}$ can be generated with
+  \verb|$\langle a,b \rangle$|).\\
+
+  If you choose this approach, you should begin your proof with something like
+  ``to avoid confusion, we will denote points of $\RR^2$ with angled brackets
+  (e.g.\ $\ip{a,b}$), and intervals in $\RR$ with the usual $(a,b)$, $[a,b]$,
+  etc.'' \\
+
+  If you choose not to create new notation, you should be sure to explicitly
+  draw attention to when you're treating $(a,b)$ as a point vs.\ as an interval.
+  There are a few things you can do to make this natural:\\[-.75em]
+  \begin{enumerate}[label=(\arabic*)]
+    \item When you declare $(a,b)$, you should make the domain explicit by
+      saying ``let $(a,b) \in \RR^2$'' or ``let $(a,b) \subset \RR$.'' In fact,
+      you should \emph{always} do this with your variables, it's just
+      particularly relevant here.
+    \item Use variable symbols consistently. If you previously used $(a,b)$ to
+      refer to a point in $\RR^2$, you should not overwrite that declaration
+      later by saying ``let $(a,b) \subset \RR$.'' Instead, you should choose
+      different symbols. Usually $(a,b)$ is used for intervals, and $(x,y)$ for
+      points --- consider employing this scheme.
+    \item Consider using vector notation. E.g.,
+      \begin{leftbar}
+        Let $(X_{\rm sq}, \ms T_{\rm sq})$ denote the lexicographically ordered
+        square, and let $\ms B_{\rm sq}$ be the canonical basis for $\ms T_{\rm
+          sq}$. Denote elements of $\ms B_{\rm sq}$ by $(\mb u, \mb v)$, where
+        $\mb u, \mb v \in X_{\rm sq}$ (using square brackets as appropriate if
+        $\mb u = \mb 0$ or $\mb v = \mb 1$).
+      \end{leftbar}
+  \end{enumerate}
+\end{problem}
+\begin{problem}[A2]
+  Elegance, and combining similar casework
+\end{problem}
+\begin{problem}[A3]
+  ``Consider'' and ``take''
+\end{problem}
+\begin{problem}[A4]
+  How to identify when to give a WTS. Also, justification comes before
+  assertions. Assertions $\neq$ WTSs.
+\end{problem}
+\section{Correctness}
+\subsection{Exercise 4.41}
+\begin{problem}[B2]
+  Don't label $\RR_\alpha$! This is only for when the sets in our product are
+  distinct
+\end{problem}
+\subsection{Exercise 5.5}
+\begin{problem}[B1]
+  It's a bit hazardous to try and make an argument based on the \emph{form} of
+  arbitrary open sets in $\RR_{\rm LL}$.
+\end{problem}
+\section{Comments on TeX / Notation}
+\end{document}

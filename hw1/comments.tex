@@ -1,0 +1,936 @@
+\documentclass{fkpset}
+
+\name{Forest Kobayashi}
+\class{Topology}
+\duedate{02/07/2019}
+\assignment{HW 1 Comments}
+
+\chead{HW 1 Comments}
+\rhead{Math 147 -- Spring 2019}
+
+\titlespacing*{\section}{0pt}{4em plus 1 em minus 2em}{1 em plus 1em minus .4em}
+\titlespacing*{\subsection}{0pt}{1.5em}{1 em plus .4 em minus .2em}
+\titlespacing*{\subsubsection}{0pt}{1em}{1em plus .4em minus .2em}
+
+
+\usepackage{hyperref}
+\usepackage{fkmisc}
+
+\lstset{language=[LaTeX]TeX,
+  % Colors and stuff
+  backgroundcolor=\color{white},     % choose the background color
+  basicstyle=\footnotesize\ttfamily, % set size + style of font
+  %
+  commentstyle=\color{mygray},% comment style
+  identifierstyle=\color{blue},
+  keywordstyle=\color{mygreen},      % keyword style
+  stringstyle=\color{orange},        % string literal style
+  %
+  % Whitespace handling
+  breakatwhitespace=false,           %
+  breaklines=true,                   % sets automatic line breaking
+  keepspaces=true,                   % needs (columns=flexible)?
+  showspaces=false,                  % Don't add weird underscores
+  showstringspaces=false,            % Same
+  showtabs=false,                    % Same
+  tabsize=2,	                       % 1 tab = 2 spaces
+  xleftmargin=2em,                   % Properly indent listing
+  %
+  % Caption
+  belowcaptionskip=1\baselineskip,   % Spacing to caption
+  captionpos=b,                      % caption at bottom
+  title=\lstname,                    % show fname w/ \lstinputlisting
+  %
+  % Framing & Numbering
+  frame=L,	                        % adds a frame on the left
+  numbers=left,                      % linum loc. (none, left, right)
+  numbersep=10pt,                    % distance of linum to code
+  numberstyle=\tiny\color{numgray},  % style used for the line-numbers
+  rulecolor=\color{black},           %
+  stepnumber=1,                      % number every line
+  %
+  % Misc
+  language=[LaTeX]Tex,                   % default language
+  % texcsstyle=*\bf\color{blue},
+  % otherkeywords={$, \{, \}, \[, \]},
+}
+
+\begin{document}
+\section{Important Notes:}
+Before we get to the main stuff, a few meta-notes about the grading:
+\begin{enumerate}[label=(\arabic*)]
+  \item \textbf{Important:} If anything I've said here seems to conflict with
+    what Prof.\ Su has told you in class, let one of us know so that we can talk
+    about it during our weekly grading meeting.
+  \item If any of my comments are ever unclear and/or you think I've made a
+    mistake, you should contact me directly at
+    \href{mailto:fkobayashi@g.hmc.edu}{fkobayashi@g.hmc.edu}, and I'll try to
+    get back to you as soon as I can! Note, I probably won't be receive your
+    message if you send it via facebook messenger (since I don't use facebook
+    often), so don't send things there.
+  \item The tentative grading scheme is as follows:
+    \begin{itemize}
+      \item Each problem is worth 5 points.
+      \item 4 points go to the correctness of your argument.
+      \item 1 point will go to the clarity of your writing. Since this is likely
+        something that wasn't emphasized in your previous courses, points will
+        not be deducted here until roughly the fourth problem set.
+      \item If you score lower than a 4/5 on any particular problem, you can
+        resubmit a rewrite once (but only once) for an opportunity for full
+        credit!
+      \item If you accidentally forgot to attach a problem and/or you submitted
+        a proof of the wrong problem (\texttt{\#relatable}), talk to Prof.\ Su
+        first --- I can't award any points here until he gives the OK, but
+        chances are he'll let you resubmit to me for credit \texttt{:)}
+    \end{itemize}
+    The details might change a bit as we test this out, but the main thing to
+    note is that the clarity of your writing will be directly factored into your
+    grade. See section \ref{sec:rationale} below for the rationale.
+  \item Here's how the comments work. Each will consist of an \textbf{A},
+    \textbf{B}, or \textbf{C}, followed by some $\mb n \in \NN$. The categories
+    are as follows:
+    \begin{itemize}
+      \item $\mb{An}$ comments are about style/formatting standards for
+        mathematical writing. This is something we've decided to emphasize, so
+        consider skimming them each week even if you didn't receive a comment!
+      \item Labels of the form $\mb{Bn}$ will refer to comments about the
+        correctness of your proof.
+      \item Labels of the form $\mb{Cn}$ are usually just some comments on
+        notational standards / \LaTeX\ tips (if applicable). You might not see
+        these every week.
+    \end{itemize}
+    When grading your homeworks, I tried to stay consistent with the comment
+    labeling scheme given above. However, I do make mistakes sometimes, so if
+    something looks funny, don't hesitate to send me an email!
+  \item This week, I accidentally did all of the grading in pencil, so it might
+    be hard to read some of my comments. Sorry about this! In the future, I will
+    try to adhere to the following scheme:
+    \begin{itemize}
+      \item Strikethrough in pencil means that I'm offering a suggested edit to
+        your phrasing (per the writing style standards below). It does not
+        necessarily mean that your argument is incorrect! Also, usually when I
+        do this, I'll offer a reference to a grading comment or give a suggested
+        replacement phrasing.
+      \item Red pen will be used for comments on correctness.
+      \item Anything else we add will be specified in the future.
+    \end{itemize}
+\end{enumerate}
+
+\vspace{2em}
+
+\section{General comments and standards:}
+\subsection{Why the emphasis on writing style?}\label{sec:rationale}
+Well, to quote Prof.\ Su's handout on good mathematical writing,
+\begin{leftbar}
+  ``Learning to communicate effectively is not just a service to your audience;
+  it is also an exercise in clarifying and structuring your own thinking.''
+\end{leftbar}
+This is important! Improving your communication skills doesn't just benefit your
+reader, it also benefits \emph{you}. If your proof is very terse and clearly
+written, you'll have a much easier time understanding the structure of your
+argument, and will also have an easier time identifying potential flaws in your
+reasoning. So, without further ado, here are the standards I'll be applying
+to your homeworks throughout the semester.
+
+\subsection{Document formatting}
+\begin{itemize}
+  \item Please leave ample room for comments on your problem sets! This can mean
+    larger margins, whitespace after each solution, or both! You don't have to
+    put each problem on its own page, but it'd be helpful to have at least
+    \verb|\vspace{5cm}| or so \texttt{:)}.
+  \item Please do not box your responses to problems! This makes it hard to fit
+    my comments in.
+  \item Try to leave a little bit of space at the top of the first page of your
+    pset in which I can tally points
+  \item Only applicable for people who handwrite their psets: Since I'd like to
+    use pencil to suggest edits (pencil allows me to write smaller notes and
+    also makes it easier for you to read the original version of your proof),
+    it'd be awesome if I could ask you to your writeups in pen on white unruled
+    paper. If you'd really prefer not to though (e.g., because pencil makes it
+    easier to rewrite things), that's totally reasonable! In that case, just try
+    to skip every other line so that I have room to write stuff.
+\end{itemize}
+
+\subsection{Organizing your reasoning}
+TL;DR: you want all of the logic in your proof to be ordered linearly from left
+to right, top to bottom. Important structure in your arguments should be
+highlighted visually through the use of headers, line breaks, and indentation.
+
+Basically, you want to make it as easy as possible for your reader to understand
+your proof on a first reading. Having very linear arguments is helpful in this
+respect. However, even if your writing is perfect, the \emph{reader} might make
+make a mistake, such as misremembering how the definition of an important
+variable. When this occurs, they'll need to go back and re-read an earlier
+section, so you want to make it as easy as possible for them to find what
+they're looking for. Visual cues are extremely helpful here! And since we're in
+the context of homework and psets (instead of the kind of formal mathematical
+writing you'd find in a journal), we can choose to employ them!
+
+Now, for the long version:
+\subsubsection{Notes on linear arguments:}
+As a general rule, any information your reader needs to understand a given
+section should be stated as close before where it's needed as possible. Both
+``close'' and ``before'' are important here! Try not to structure arguments in
+such a way that requires a \texttt{\#throwback} to something from three
+paragraphs earlier, and try to \emph{never} cite information that comes later.
+
+These ideas are applicable at all levels of structure in your proof:
+\begin{enumerate}[label=(\arabic*)]
+  \item Paragraphs: each paragraph should follow logically from the previous
+    ones. Paragraphs should never contain a reference to an argument made in a
+    \emph{subsequent} paragraph. As an example, suppose we're trying to show $A
+    \implies D$. Then we should not do the following:
+    \begin{leftbar}\emph{Proof.}
+      We have $A$. Thus, [\ldots], and so $B$. As we show in the subsequent
+      section, $B \implies C$, and thus we have [\ldots], hence $D$.
+
+      It remains to show $B \implies C$. Suppose $B$, then [\ldots], and so $C$.
+      Thus the proof is complete. \qed
+    \end{leftbar}
+    If the reason you've split up the proof of $B \implies C$ is because the
+    argument is long and confusing, then here are two remedies you can try:
+    \begin{leftbar}
+      \emph{Proof.} First, we prove a small lemma.
+      \begin{leftbar}\vspace{.5em}
+        \begin{lemma}
+          $B \implies C$.
+        \end{lemma}
+        \emph{Proof of Lemma.} Observe that $B$ implies [\ldots], thus $C$.
+        \hfill $\square$
+      \end{leftbar}
+      \textbf{Main Proof:}
+      We have $A$. Thus, [\ldots], and so $B$. By the lemma, $B \implies C$, and
+      so $C.$ Then [\ldots], hence $D$. Thus $A \implies D$, as desired. \qed
+    \end{leftbar}
+    Note, even though we've put the proof of $B \implies C$ earlier on, this
+    argument is still linear. Your reader can verify the proof of the lemma on
+    its own first, and once they're satisfied it's correct, they can freely
+    apply it in the proof body. If you'd like the proof of $B \implies C$'' to
+    remain within the main body of your argument, you can frame it as a claim:
+    \begin{leftbar}
+      We have $A$. Thus [\ldots] $B$.
+      \begin{claimproof}
+        \item $B \implies C$.
+        \item Since $B$, note [\ldots], therefore $C$. \cmark
+      \end{claimproof}
+      Thus $C$, and so [\ldots], therefore $D$.
+    \end{leftbar}
+    which is also fine.
+  \item Sentences \emph{within} your paragraphs should be arranged so as to
+    minimize analogous issues, and
+  \item So too with the actual clauses within your sentences. Quick and dirty
+    rules:
+    \begin{itemize}
+      \item Variables should always be defined \emph{before} they're used
+      \item Quantification of variables should adhere to the rules described in
+        \textbf{A2}
+      \item In terms of in-sentence logic, try not to phrase things as ``$B$,
+        because $A \implies B$, and we have $A$.'' It's usually better ot say
+        something like ``observe that $A$. We have $A \implies B$, so $B$,'' or
+        something to that effect.
+    \end{itemize}
+\end{enumerate}
+\subsubsection{Visual cues --- whitespace}
+You can actually improve the readability of your arguments substantially just by
+making judicious use of whitespace! Some tips:
+\begin{enumerate}[label=(\arabic*)]
+  \item If the main idea of your proof is $A \implies B \implies C \implies D$,
+    then there should be line breaks between your treatment of $A \implies B$,
+    $B \implies C$, and $C \implies D$:
+    \begin{leftbar}
+      \begin{proof}
+        Suppose $A$. Then [\ldots], so $B$.
+
+        Now, observe that $B$ implies [\ldots], thus $C$.
+
+        Finally, we want to show $C \implies D$. By definition of $C$, we
+        have [\ldots], hence $D$.
+
+        So $A \implies D$, as desired.
+      \end{proof}
+    \end{leftbar}
+    Note, if the proof of each step is only a few lines long, then this isn't
+    explicitly necessary. Use your own judgment, and I'll give you feedback if I
+    think you should split up your argument more \texttt{:)}
+  \item If you introduce a lemma, it might be easier to follow your argument if
+    both the statement and proof of the lemma are indented (or otherwise
+    visually distinguished) relative to the main proof body. I typically use a
+    leftbar environment (sorry the double leftbar looks weird here --- imagine
+    the outer one doesn't exist), but you don't have to do this:
+    \begin{leftbar}
+      \emph{Proof.} First, we introduce a small lemma.
+      \begin{leftbar}\vspace{.5em}
+        \begin{lemma}
+          Hello world! I'm a lemma.
+        \end{lemma}
+        \emph{Proof of Lemma.} Proof of lemma goes here. Note, I like to use
+        $\square$ instead of $\blacksquare$ for the QED symbol for lemmas
+        and things, so as to avoid the reader confusing the ``end of lemma
+        proof'' with the ``end of main proof.'' \hfill $\square$
+      \end{leftbar}
+      Now, we proceed to the main proof. Suppose $A$. Then [\ldots], and so
+      $B$. By the lemma, $B \implies C$, and [\ldots], thus $D$.
+    \end{leftbar}
+    A leftbar environment can be defined with the \texttt{mdframed} package
+    as follows:
+    \begin{lstlisting}
+\newmdenv[
+  skipabove=5, % whitespace before
+  skipbelow=5, % whitespace after
+  innerleftmargin = .5em, % indentation of text relative to the bar itself
+  innerrightmargin = 0pt, % we don't need to shorten the RHS
+  innertopmargin = .5em,  % vertical space between top of leftbar and text
+  innerbottommargin = .5em, % ibid but buttom of leftbar
+  leftmargin = 2em, % indentation of environment relative to the text
+  rightmargin = 0em,
+  linewidth = 2pt, % width of the bar; use pt to make independent of font
+  topline = false, % no frame at top
+  rightline = false, % no frame at right
+  bottomline = false % no frame at bottom
+  ]{leftbar}\end{lstlisting}\vspace{-3em}
+    And you can use the leftbar environment like so:
+    \begin{lstlisting}
+\begin{leftbar}
+  This text is in a leftbar environment
+\end{leftbar}\end{lstlisting}\vspace{-3em}
+\end{enumerate}
+\subsubsection{Visual cues --- common proof types}
+For multi-part proofs, it's super helpful to use visual cues instead of verbal
+ones to indicate what each component is. I'll give examples below, and TeX code
+for each one. For each of the following, note that using \cmark is optional,
+\emph{unless} you're making all of your proofs without the use of these headers
+(discouraged).
+\begin{enumerate}[label=(\arabic*)]
+\item To show $A \iff B$, you should format your proof as follows:
+  \begin{leftbar}
+    \emph{Proof.}
+    \begin{iffproof}
+      \item Suppose $A$. Then [\ldots lots of math happening here!\ldots], hence
+        $B$. \cmark
+      \item Suppose $B$. Then [\ldots also lots of math happening here!\ldots],
+        therefore $A$.
+    \end{iffproof}
+    Thus, $A \iff B$. \qed
+  \end{leftbar}
+  Since syntactically, the ``forward'' direction is technically $B \implies A$
+  (``$A$ if $B$''), you should be sure to include a ``suppose $A$'' after the
+  $(\implies)$!
+
+  For our purposes, this is easier to read than something like this:
+  \begin{leftbar}
+    \emph{Proof.} First, we show the forward direction. Suppose $A$. Then
+    [\ldots], hence $B$. Now, we show the backward direction. Suppose $B$.
+    Then [\ldots] $A$. Since we have $A \implies B$ and $B \implies A$, it
+    follows that $A \iff B$.
+  \end{leftbar}
+  For those of you using \LaTeX, to make the first proof, I define the
+  following environment (I believe this requires the \texttt{enumitem}
+  package):
+  \begin{lstlisting}
+% The indentation for customized iff labels really grinds my gears.
+% Hence, a new environment to make everything right in the world
+% again.
+\newcommand*{\iffenum}[1]{\expandafter\@iffenum\csname c@#1\endcsname}
+\newcommand*{\@iffenum}[1]{%
+  \ifcase#1\or{$(\Rightarrow):$}\or{$(\Leftarrow):$}%
+  \else\@ctrerr\fi}
+
+\AddEnumerateCounter{\iffenum}{\@iffenum}{$(\Rightarrow):$}
+\newenvironment{iffproof}{%
+  \begin{enumerate}[label=\iffenum*, leftmargin=4em]%
+  }{\end{enumerate}}\end{lstlisting}\vspace{-3em}
+  With this, creating the iff portion of the proof above was as simple as
+  \begin{lstlisting}
+\begin{iffproof}
+  \item Suppose $A$. Then [\ldots lots of math happening here!\ \ldots], hence
+    $B$. \cmark
+  \item Suppose $B$. Then [\ldots also lots of math happening here! \ldots],
+    therefore $A$.
+\end{iffproof}\end{lstlisting}\vspace{-3em}
+  Where \verb|\cmark| requires the \texttt{pifont} package and is defined
+  by\\
+  \verb|\newcommand{\cmark}{\text{\ding{51}}}|.
+\item Proofs of set equality are almost exactly the same. Let $A$ and $B$ be
+  sets. Then you should format your proof like
+  \begin{leftbar}
+    \emph{Proof.}
+    \begin{seteqproof}
+    \item Let $x \in A$ be given. Then [\ldots] $x \in B$, so $A \subset B$.
+      \cmark
+    \item Let $x \in B$ be given. Then [\ldots] $x \in A$, so $B \subset A$.
+      \cmark
+    \end{seteqproof}
+    thus $A = B$. \qed
+  \end{leftbar}
+  Similarly to the \texttt{iffproof} environment, I have a
+  \texttt{seteqproof} environment defined as follows (feel free to set the
+  environment name to something more ergonomic, though):
+  \begin{lstlisting}
+% Similarly, but for subset supset proofs
+\newcommand*{\seteqenum}[1]{\expandafter\@seteqenum\csname c@#1\endcsname}
+\newcommand*{\@seteqenum}[1]{%
+  \ifcase#1\or {$(\subset):$}\or {$(\supset):$}\else\@ctrerr\fi
+}
+\AddEnumerateCounter{\seteqenum}{\@seteqenum}{$(\subset):$}
+\newenvironment{seteqproof}{%
+  \begin{enumerate}[label=\seteqenum*, leftmargin=4em]%
+  }{\end{enumerate}}\end{lstlisting}\vspace{-3em}
+\item When doing a proof with casework, you should format this as follows:
+  \begin{leftbar}
+    Suppose $A$. We want to show $B$. We have the following cases:
+    \begin{enumerate}[label=(\arabic*)]
+    \item Suppose (case 1). Then [\ldots] $B$. \cmark
+    \item Suppose (case 2). Then we have the following subcases:
+      \begin{enumerate}[label=\roman*)]
+      \item Suppose (subcase i). Then [\ldots] $B$. \cmark
+      \item Suppose (subcase ii). Then [\ldots] $B$. \cmark
+      \end{enumerate}
+      Since these cases are exhaustive, $B$. \cmark
+    \item Suppose (case 3). Then [\ldots] $B$. \cmark
+    \end{enumerate}
+    Since these cases are exhaustive we have $A \implies B$, as desired.
+    \qed
+  \end{leftbar}
+  The \LaTeX\ code used above again requires the \texttt{enumitem} package,
+  and is as follows:
+  \begin{lstlisting}
+\begin{enumerate}[label=(\arabic*)]
+  \item Suppose (case 1). Then [\ldots] $B$. \cmark
+  \item Suppose (case 2). Then we have the following subcases:
+    \begin{enumerate}[label=\roman*)]
+      \item Suppose (subcase i). Then [\ldots] $B$. \cmark
+      \item Suppose (subcase ii). Then [\ldots] $B$. \cmark
+    \end{enumerate}
+    Since these cases are exhaustive, $B$. \cmark
+  \item Suppose (case 3). Then [\ldots] $B$. \cmark
+\end{enumerate}\end{lstlisting}\vspace{-3em}
+  By contrast, you should not do the following:
+  \begin{leftbar}
+    Suppose $A$. We want to show $B$. First, if (case 1), then [\ldots] $B$. $B$
+    also follows from (case 2), because if (subcase i), then [\ldots] and so
+    $B$, and if (subcase ii), then [\ldots] and so $B$ as well, so in either
+    case, $B$. If (case 3), [\ldots] $B$. So no matter what, $B$. Therefore $A
+    \implies B$.
+  \end{leftbar}
+  A few more points: when doing proofs by casework, you should
+  \emph{almost always try to make your cases disjoint.} That is, (case 1)
+  should imply ((not case 2) and (not case 3)), and so on. In the rare event
+  that this is not the most natural way to write your proof, then you
+  should \emph{take special care to highlight to your reader that your cases are
+    non-disjoint} --- and be sure to add in an extra sentence at the end
+  justifying why they're exhaustive!
+
+  % The exception here is if you have a simple claim like ``prove property $P$ for
+  % all points $p \in (A \cup B)$.'' In that case, it's ok
+
+  Also, if you have a situation where (case 2) implies some claim $C$, you
+  should \emph{not} start your treatment of (case 2) with ``Suppose $C$.''
+  You should start with ``Suppose (case 2). Then $C$, and so [\ldots] thus
+  $B$.'' This makes it significantly easier for your reader to follow!
+  \item Inductive proofs should look something like
+    \begin{leftbar}
+      \emph{Proof.} We proceed by induction.
+
+      \textbf{Base Case:} Let $k = k_0$ (where $k_0 \in \NN$ stands for the base
+      case here in this example). Observe that [\ldots], thus (statement $P$)
+      holds for $k = k_0$. \cmark
+
+      \textbf{Inductive Hypothesis:} Now, suppose that (statement $P$) holds for
+      some $k \in \NN$ with $k \geq k_0$.
+
+      \textbf{Inductive Step:} We want to show (statement $P$) holds for $k+1$.
+      Note that [\ldots], hence (statement $P$) holds for $k+1$. \cmark
+
+      Thus, by the principle of mathematical induction, (statement $P$) holds
+      for all $k \in \NN \st k \geq k_0$.
+    \end{leftbar}
+    although you have more leeway here.
+  \item Proofs by contradiction should \emph{always} start with an explicit
+    ``suppose, to obtain a contradiction, that $\neg B$.''
+\end{enumerate}
+\subsection{Terseness is next to godliness}
+Ok, so this might seem hypocritical of me after throwing multiple pages of
+formatting guidelines at you, but you should strive to make your writing terse!
+In general, try to give your reader \emph{exactly} as much information as they
+need --- no more, no less. Sometimes, this means omitting the details for
+non-essential steps, and focusing instead on writing in-depth about the
+non-trivial portions of your proof. Other times, it means rewriting a long
+constructive proof if you realize contradiction is more efficient. For some
+perspective, each of the problems from this week were possible to prove in under
+$\approx$10 lines, while staying perfectly rigorous!
+
+Here are some DOs and DONTs (this isn't very comprehensive currently; I'll
+update it more next week. For the time being, please re-read section 2 of Prof.\
+Su's ``good mathematical writing'' document, particularly the part on deciding
+what's important to say, avoiding red herrings, stepping back to simplify, and
+refining repeatedly).
+
+\textbf{DOs}
+\begin{enumerate}[label=(\arabic*)]
+  \item Try to remove as much redundancy as possible from your writing! That is,
+    don't repeat yourself, and avoid saying the same thing multiple times in a
+    row just with slightly different wording. For an example of what \emph{not}
+    to do, look at the previous sentence (heh)
+  \item Define variables if you find yourself referring the same quantity more
+    than once or twice. E.g., if you're doing something involving limit points,
+    you'll probably talk a lot about $(U - \set{p}) \cap A$. As such, you might
+    consider saying ``let $Y = (U - \set{p}) \cap A$'' so that you don't have to
+    rewrite the expression repeatedly and/or make significant use of ``the
+    aforementioned intersection.''
+  \item Ok, this one requires a bit of qualification, but \emph{do} feel free to
+    use symbols and shorthand in your writing \emph{IF} doing so is clearer and
+    more efficient than English.
+
+    Ok, yes, I know we've all been taught to avoid shorthand like the plague ---
+    but it's not \emph{all} bad if used responsibly! The issue is more that
+    often when people start using symbols, they start \emph{overusing} symbols.
+    Still, it exists for a reason, so don't discard its usefulness completely.
+
+    There are some situations in which I think shorthand is actually universally
+    superior to English. For instance, I believe you should almost always use
+    ``$\in$'' instead of ``contained in,'' particulary since ``contained in'' is
+    easy to confuse with $\subset$. As an example, I encountered some sentences
+    like this when grading:
+    \begin{leftbar}
+      Every non-empty set in the indiscrete topology is open.
+    \end{leftbar}
+    On a first reading, it's not clear that the author means ``let $\ms T$ be
+    the indiscrete topology on a set $X$. Then every element of $\ms T$ is an
+    open set.'' Instead, it sounds like they're saying ``under the indiscrete
+    topology, every $U \subseteq X$ is open,'' which is generally false. Thus,
+    shorthand and symbols sometimes patch the ambiguities left by English
+    language.
+
+    Here's a (non-exhaustive) list of notation I think you should usually use
+    over their English counterparts:
+    \begin{itemize}
+      \item $\abs{X}$ (instead of ``cardinality of $X$'' --- definitely don't
+        say ``the size of $X$.'')
+      \item $\in, \not\in$
+      \item $\subset, \supset, \not\subset, \not\supset$
+      \item $<, \leq, =, \geq, >$, and $\neq$
+      \item $\cap$ (often $\cup$ as well, but sometimes it's easier to say
+        ``together with'' so that you don't have to define extra sets, as in the
+        definition of closure)
+      \item Set complement (whichever of $A^c$, $X-A$ you prefer --- each has
+        its merits; $A^c$ is often easier to read, but leaves ambiguity as to
+        what the space we're complementing within is)
+      \item Arithmetic operations and stuff
+      \item Homeomorphism and equivalence relations ($\cong, \sim, \equiv$)
+    \end{itemize}
+    Sometimes, the decision for whether or not you should use shorthand depends
+    on whether you want your reader to slow down when parsing the current
+    section of your proof. E.g., if you're just trying to give the reader a
+    summary of what to expect from the following paragraph, it might be ok to
+    say ``we want to show $\forall x \in U$, there exists $U_x \in \ms T \st x
+    \in U_x$'' before you actually dive into proving it. If, however, you're at
+    a really subtle point in the argument, you might consider writing things out
+    with more English to force your reader to slow down. Here is a (again,
+    non-exhaustive list) of symbols that fall under this ``sometimes'' category:
+    \begin{itemize}
+      \item $\exists, \forall$
+      \item $\implies, \impliedby, \iff$ (although honestly I kind of dislike
+        $\impliedby$)
+      \item WTS (for ``want to show'' --- be aware, most people intensely
+        dislike this), and st or s.t.\ (for ``such that'')
+      \item $\contra$ (contradiction)
+      \item $\exists!$ (use this one sparingly).
+    \end{itemize}
+    If you do choose to make use of the symbols above, make sure you don't
+    \emph{always} use them. Again, they should be primarily to modulate my
+    reading speed. If you want to try out using them, I'll let you know if I
+    think it's getting excessive.
+
+    Lastly here're some things you should really try to avoid:
+    \begin{itemize}
+      \item Most formal logic symbols (e.g., $\land, \lor, \neg, \therefore,
+        \because$)
+      \item Not much else comes to mind right now, but I'll add more in the
+        future if this changes.
+    \end{itemize}
+\end{enumerate}
+
+\textbf{DONTs}
+\begin{enumerate}[label=(\arabic*)]
+  \item Don't feel like you need to include non-essential steps, especially if
+    they distract from the overall structure of your argument. Taking an example
+    from this pset, I would actually encourage you \emph{not} to bother with
+    proving that the union of two finite sets is finite. In the future, you can
+    simply assert it!
+
+    Remember your audience: 131 is a prerequisite for this class, so you should
+    assume that the reader can fill in some of these gaps. If you have something
+    that feels like it's in an awkward middle ground, when in doubt, leave a
+    proof in a footnote / endnote!
+  \item Similarly, don't feel that it's necessary to re-prove results from
+    previous classes unless the problem explicitly requires it. As an example,
+    since most people have taken Analysis (I think), you can simply assert that
+    open balls are open in the standard topology on $\RR^n$. If you'd like to be
+    thorough, you can leave a citation for a theorem in a parenthetical, or
+    again in a footnote. If you just want the extra practice though, you can
+    include a proof as a lemma or something!
+  \item Speak with a lot of double negatives. Instead of saying ``$V$ can't
+    possibly contain a point $U$ doesn't,'' say ``Every point of $V$ is an
+    element of $U$,'' or better yet, ``for all $x \in V$, $x \in U$.''
+  \item Don't include red herrings in your proofs! I.e., details / variables
+    that you introduce but never use.
+  \item Don't include more than one proof of the same fact! If you have a second
+    proof that's less intuitive but that you're really excited about, feel free
+    to include it as a footnote or after the end of your first proof. But you
+    should not put both of them in the main body.
+  \end{enumerate}
+Ok, onwards to the grading comments.
+
+\section{Writing Style Comments}
+\begin{problem}[A1]
+  This comment is about proper meta-discourse. When trying to signal to your
+  reader what strategies you'll pursue for your proof, you should keep the
+  following considerations in mind:\\
+  \begin{adjustwidth}{0pt}{1em}
+    \begin{itemize}
+      \item You don't need to say things things like ``the way to show $A = B$
+        is to show $A \subset B$ and $B \subset A$.'' Similarly with ``to prove
+        $A \iff B$, we must prove $A \implies B$ and $B \implies A$.'' While
+        these are great if writing for a less experienced audience, 147 assumes
+        at least two prior proof-based courses, so your reader should be
+        familiar with these tactics \texttt{:)}\\
+
+        So, provided it's clear \emph{what} you're trying to prove in these
+        cases, you should just use the formatting guidelines listed in the
+        \textbf{Visual cues} section.\\
+      \item Also, when doing proof by casework, you should use the formatting
+        guidelines listed in \textbf{Visual cues}. As stated there, you should
+        always try to make it \emph{as clear as possible} that your cases are
+        exhaustive. Don't do a proof by casework inline, unless it's really
+        short.\\
+      \item Before beginning a proof by contradiction, remember to be sure to
+        indicate to your reader that that's what you're doing by including a
+        ``Suppose, to obtain a contradiction.''\\
+    \end{itemize}
+  \end{adjustwidth}
+\end{problem}
+\begin{problem}[A2]
+  Properly quantifying variables is extremely important. Here are the rules
+  (loosely adapted from Prof.\ Flapan's guidelines --- pay \emph{particular}
+  attention to the scoping rules):\vspace{1em}
+  \begin{enumerate}[label=(\arabic*)]
+    \item Variables defined in the problem statement do not need to be
+      re-defined. E.g., if the problem statement says ``prove property $P$ for a
+      topological space $(X, \ms T)$,'' you do not need to start your proof with
+      ``Let $(X,\ms T)$ be a topological space.''\vspace{.5em}
+    \item Other than that, you should \emph{always} define a variable before you
+      use it. Variable definitions should come at the start of the sentence, and
+      you should give a domain explicitly. E.g., for some property $P$ satisfied
+      over a set $X$, say ``$\forall x \in X$, $P(x)$'' instead of ``$P(x)
+      \forall x \in X$'' (of course, there are some exceptions --- but this is a
+      good starting point). We should \emph{never} say ``we have $P(x)$ for all
+      $x$'' without saying what $x$ is.\vspace{.5em}
+    % \item If a statement involves multiple variables, then the variables must be
+    %   defined in the order they occur in the statment.\vspace{.5em}
+    \item ``Let'' declares a variable until the objects the definition depends
+      on go out of scope, or until the variable gets redefined. Hence, if you
+      start a proof about a topological space $(X,\ms T)$ with ``Let $x \in
+      X$,'' then you can freely refer to $x$ until the end of the problem,
+      unless ($X, \ms T$) gets redefined somewhere in between. Similarly when
+      defining variables in casework.\vspace{.5em}
+    \item ``For all,'' ``$\forall$,'' and ``if'' only declare a variable until
+      the end of the sentence. If you want to use the variable later, you should
+      use ``let.''\\
+
+      This might not be a canonical rule, but we're going to do things this way
+      in 147 so that you can use $\forall$ declarations when you need an
+      unimportant dummy variable, e.g.\ if you're trying to highlight a property
+      of a set using its elements, but don't need to use these element
+      later.\vspace{.5em}
+    \item Given a set $X$, if you want to prove a claim for all $x \in X$ then
+      you must start your proof with ``let $x \in X$ be given'' or ``let $x \in
+      X$ be arbitrary.''\vspace{.5em}
+    \item ``There exists'' and ``$\exists$'' declare a variable if it does not
+      depend on a $\forall$ or an ``if'' statement earlier in the sentence.
+      Example:
+      \begin{leftbar}
+        Consider $\ZZ$. $\forall n \in \ZZ, \exists k\in \ZZ \st k = 2n$. Now,
+        take $u = 3+k$.
+      \end{leftbar}
+      what is $u$ supposed to be? It's unclear. The way we've defined it makes
+      it look like a single value, but really it's referring to a whole class of
+      values contingent on the particular choice of $n$. By contrast, saying
+      \begin{leftbar}
+        Let $n \in \ZZ$ be given. Then $\exists k \in \ZZ \st k = 2n$. Now, take
+        $u = 3 +k$.
+      \end{leftbar}
+      is fine, because we know exactly what $u$ is supposed to be, since we're
+      assuming we've been given $n$.\\
+
+      The one exception I'll make is for things like
+      \begin{leftbar}
+        Let $(X,\ms T)$ be a topological space, and suppose $U$ is open. Then
+        $\forall x \in X$, there exists $U_x \in \ms T$ such that $x \in U_x$,
+        and $U_x \subset X$. Observe that
+        \[
+          \bigcup_{x \in X} U_x = U,
+        \]
+        hence $U$ is open.
+      \end{leftbar}
+      because we're implicitly defining a choice function here, so things work
+      out.
+  \end{enumerate}
+\end{problem}
+\begin{problem}[A3]
+  Try to avoid giving red herrings and/or unnecessary levels of detail. As an
+  example, I saw a lot of people saying things like
+  \begin{leftbar}
+    ``Let $\lambda$ be a (possibly uncountable) indexing set, and let
+    $\set{U_\alpha}_{\alpha \in \lambda}$ be a collection of open sets indexed
+    by $\lambda$.''
+  \end{leftbar}
+  Here, I think it's less confusing to say ``Let $\lambda$ be an arbitrary
+  indexing set'' instead of ``let $\lambda$ be a (possibly uncountable) indexing
+  set.'' What's the difference? Formally, not much --- ``possibly uncountable''
+  is equivalent to ``countable or uncountable,'' which is the same as
+  ``arbitrary.'' But this is exactly the problem!\\
+
+  If you say ``possibly uncountable'' instead of ``arbitrary,'' your reader
+  might think ``well, \emph{possibly uncountable} is equivalent to
+  \emph{arbitrary}, so the only reason the author would pick the former over the
+  latter would be if it's going to be important later that $\lambda$ might not
+  be countable.'' Then, if no such issue arises, they'll be confused! Hence,
+  only choose the ``possibly uncountable'' phrasing if it's really relevant.
+  This was a particular example, but try to apply similar reasoning to all of
+  your proofs!
+
+  Of course ultimately, what is ``necessary'' vs.\ ``unnecessary'' to show can
+  be subjective, so just follow your gut and I'll give you feedback on whether
+  or not I agree \texttt{:)}
+
+  % This one is a lot more nitpicky, but in a similar vein, I saw a lot of people
+  % saying things like
+  % \begin{leftbar}
+  %   Note that $3/2 \in (1,2)$, and $3/2 \in \RR$, hence $\RR \cap (1,2) \neq
+  %   \varnothing$.
+  % \end{leftbar}
+  % I would argue this could also be a bit misleading, as it almost sounds like
+  % the author is implying that there's something privileged about $3/2$ that
+  % allows them to assert both $3/2 \in (1,2)$ and $3/2 \in \RR$. But really, this
+  % isn't the case --- they're just as at liberty to claim that \emph{any}
+  % arbitrary $x \in (1,2)$ is also in $\RR$. But if that's the case, why not just
+  % go straight to saying ``$(1,2) \cap \RR = (1,2) \neq \varnothing$,'' or even
+  % ``$(1,2) \cap \RR \neq \varnothing?$'' To me, both of these feel equivalently
+  % direct, and both cut out steps.\\
+
+
+\end{problem}
+\begin{problem}[A4]
+  Your writing should never include phrases like ``obviously,'' ``clearly,'' or
+  ``trivially.'' The rationale is that these words offer no positive content to
+  your reader. Consider the following scenarios:
+  \begin{enumerate}[label=(\arabic*)]
+    \item Suppose that you're saying ``clearly, $A \implies B$'' without
+      actually proving it. Then
+      \begin{itemize}
+        \item In the event that your reader agrees this fact \emph{is}
+          self-evident, then you didn't need to say ``clearly'' at all the first
+          place.
+        \item If your reader does \emph{not} think this fact is self-evident,
+          then you risk either making them think you're being lazy, or (if your
+          reader is looking to your writing for guidance) maybe even making them
+          feel inadequate.
+      \end{itemize}
+      Neither of these is beneficial, so consider using one of the following
+      strategies instead:
+      \begin{itemize}
+        \item If the claim is sufficiently besides the point, you can simply
+          assert it. E.g., ``$A$ is infinite, while $B$ is finite, hence $A \not
+          \subset B$.'' You don't have to prove it, but you still shouldn't say
+          ``clearly $A \not \subset B$.''
+        \item If it seems appropriate, you could give a brief hint of how one
+          might show the claim, e.g.\ ``one can use induction to show $A
+          \implies B$.'' This gives your reader an idea of what direction to
+          look in, and also doesn't sound as abrasive.
+        \end{itemize}
+    \item Suppose that you're saying ``clearly'' to make a conclusion (e.g.,
+      ``Note that [\ldots] thus, we clearly have $A$''). In this case as well,
+      the word adds no positive content --- either your preceding argument
+      was well-written and sound (in which case the claim should be clear
+      independent of whether you assert it is), or it wasn't, in which case
+      saying ``clearly'' doesn't actually change anything.
+  \end{enumerate}
+  In summary, use neutral words like ``observe'' or ``note'' instead of
+  ``clearly.''
+\end{problem}
+\begin{problem}[A5]
+  If you find yourself repeatedly saying phrases like ``some point in'' or ``the
+  same intersection as before'' to refer to the same object, you should check to
+  if your proof reads better if you define this quantity as a variable. Examples:
+  \begin{leftbar}
+    Suppose $(A \cap B) \cup C \neq \varnothing$. Then there is some point that
+    is in $(A\cap B)$ or $C$. It follows that there is some point not contained
+    in the complement of this set above, that is, there is some point in $X -
+    ((A\cap B)\cup C).$
+  \end{leftbar}
+  It's often easier for a reader to follow something like this:
+  \begin{leftbar}
+    Let $Y = (A \cap B) \cup C$, and suppose $Y \neq \varnothing$. Then there
+    exists $y \in Y$, and $y \in (A \cap B)$ or $y \in C$.
+
+    $y \not\in X - Y$.
+  \end{leftbar}
+  It's also shorter!
+\end{problem}
+\begin{problem}[A6]
+  Try not to be redundant! Writing things like
+  \begin{leftbar}
+    ``Consider $(A \cap B)^C$, that is, the complement of the intersection of
+    $U$ and $V$''
+  \end{leftbar}
+  can often clutter your proofs unnecessarily. Keeping it simple will make it
+  easier to read!
+\end{problem}
+\begin{problem}[A7]
+  When trying to say $A \implies B$, $A$, hence $B$, don't say ``$B$, because $A
+  \implies B$, and $A$.'' Instead, say something like ``$A$, and $A \implies B$,
+  hence $B$.'' If you're concerned that the direction you're going in seems
+  unmotivated unless the reader knows what you're trying to do, you can try
+  adding a WTS: ``We want to show $B$. We have $A$. But note, $A \implies B$,
+  hence $B$.''\\
+
+  In general, justification should come \emph{before} your result. An exception
+  is when you're making a parenthetical citation of a theorem --- in this case,
+  it's ok to say something like ``$(A \cap B)^c = A^c \cup B^c$ (DeMorgan's
+  Laws),'' instead of ``by DeMorgan's Laws, $(A \cap B)^c = A^c \cup B^c.$''
+  However, the second form is usually still preferred.
+\end{problem}
+\begin{problem}[A8]
+  Don't use English in situations where symbols are more efficient and
+  unambiguous. I saw lots of proofs that said things like
+  \begin{leftbar}
+    ``The complement of the intersection of the two sets $U$ and $V$ is
+    equivalent to the set that is the complement of the union of $U$ and $V$,
+    which is true by DeMorgan's Laws,'' or
+  \end{leftbar}
+  \begin{leftbar}
+    ``Since points either live in the set $X-A$ or in the set $A$, then
+    because every neighborhood is not a subset of $X-A$, there must be a point
+    contained in $A$ in every neighborhood of $p$, by properties of sets.''
+  \end{leftbar}
+  These are completely correct! However, phrasing it in this way could make it
+  harder for a reader to follow what you're saying. The \emph{length} of the
+  sentence makes it easy to get lost partway through and forget what's going on,
+  especially these come in the middle of a larger proof. By contrast, things
+  like\vspace{.5em}
+  \begin{itemize}
+    \item ``By DeMorgan's Laws, $X - (U \cap V) = (X-U) \cup (X-V)$,'' or
+      \vspace{.5em}
+    \item ``Observe that $(U \cap V)^C = U^C \cup V^C$ (DeMorgan's Laws)''
+  \end{itemize}
+  \vspace{.5em}
+  are actually much easier for your reader to parse. See the DOs and DONTs
+  stuff in \S 2.4 for more!
+\end{problem}
+\begin{problem}[A9]
+  Here are some general comments about vocabulary in math writing:
+  \begin{enumerate}
+    \item Avoid writing very forcefully (proof by intimidation is not allowed)!
+      That is, try not to say things in such a way that it sounds like the
+      reader is being pressured into believing you. Examples:\vspace{.5em}
+      \begin{enumerate}[label=\roman*)]
+        \item Everything in \textbf{A4}\vspace{.5em}
+        \item ``We {\color{red}must} have [\ldots]'' and ``it {\color{red}must}
+          be [\ldots]''\vspace{.5em}
+        \item ``It is a {\color{red} fact} that [\ldots]''\vspace{.5em}
+        \item ``{\color{red} Surely}, it follows that [\ldots]''\vspace{.5em}
+        \item ``We {\color{red} will} show that [\ldots]''\vspace{.5em}
+        \item ``We {\color{red}know} [\ldots]''\vspace{.5em}
+        \item ``Thus, {\color{red} we have shown that} [\ldots]''\vspace{.5em}
+      \end{enumerate}
+      One of the great things about math is that, as a reader, you are never
+      under any obligation to believe the writer. At every step of the argument,
+      you are equipped to fact-check them, construct counterexamples, and
+      generally be a nuiscance. And as a writer, your want to encourage this!
+      Remember, your goal is to \emph{be} right, not to sound right. Hence, you
+      \emph{don't} want to use phrasing that makes the reader feel like they're
+      being biased. Use neutral, objective phrasing, like
+      \begin{enumerate}[label=\roman*)]
+        \item See \textbf{A4}
+        \item ``{\color{blue}Observe that} [\ldots]''\vspace{.5em}
+        \item ``{\color{blue}By definition}, [\ldots]''\vspace{.5em}
+        \item ``It follows that [\ldots]''\vspace{.5em}
+        \item ``We {\color{blue} want to} show that [\ldots]''\vspace{.5em}
+        \item ``We {\color{blue} have} [\ldots]''\vspace{.5em}
+        \item ``Thus, [\ldots]''\vspace{.5em}
+      \end{enumerate}
+      and strive to construct a proof such that by the end, your reader will be
+      totally convinced of your correctness, all of their own accord.
+    \item This might be a bit too nitpicky, but be cognizant of what different
+      words connote.
+      \begin{itemize}
+        \item ``Assume'' vs.\ ``suppose:'' this might just be me, but in my
+          eyes, these words connote two very different things. In my experience
+          ``assume'' is usually used when you are imposing a simplifying
+          constraint on a problem --- e.g., ``assume $\sin(\theta) = \theta$''
+          --- while ``suppose'' is used for proving statements of the form ``if
+          $A$ then $B$.''\\
+
+          I think the difference is really one of hypotheticals. To me
+          ``assume'' makes it sound like we're saying we're fixing a concrete
+          interpretation to the predicate $A$, and saying ``$A$ is true,
+          [\ldots], thus $B$ is also true,'' instead of ``\emph{in the event}
+          that $A$ is true, it would also follow that $B$ is true.'' Thus I
+          prefer ``suppose'' for suppositions.\\
+        \item To connect steps in an argument, I try to sample from the
+          following pool:
+          \begin{itemize}
+            \item Inference / premise introduction: ``observe,'' ``note,''
+              ``notice,'' ``we have,''
+            \item Implications: ``thus,'' ``it follows,'' ``hence,'' ``and so,''
+              ``then,'' ``whereby,'' ``observe,''  ``note,'' ``and so,''
+              ``whence,'' etc.
+            \item Implied by: ``since,'' ``because''
+            \item Introducing an unexpected step, or achieving a contradiction:
+              ``but,'' ``however''
+            \item Final step: add ``therefore,'' to the list under
+              ``implications'' (although feel free to break this guideline and
+              use ``therefore'' wherever you please)
+          \end{itemize}
+          And don't really use much else. Notice how few ``implied by'' vocab
+          words are listed --- see \textbf{A7}!
+      \end{itemize}
+  \end{enumerate}
+  % General list of mathematical vocabulary dos and don'ts:
+  % Also, on usage of ``must'' (to be used sparingly). Use
+  % ``therefore'' when concluding larger portions of a proof, and use ``however''
+  % when you're doing things like introducing a contradiction. Also, ``assume''
+  % should only be used to list premises for constraints in problems. Suppose
+  % should be used for suppositions.
+  \begin{itemize}
+    \item Don't say things like ``The set $A$ has a limit point''
+  \end{itemize}
+\end{problem}
+\section{Correctness}
+\subsection{Execercise 3.5}~
+\begin{problem}[B1]
+  When verifying the finite complement topology, note that $U \in \ms T$ need
+  not imply $X - U$ is finite --- we could have $U = \varnothing$, whence $X - U
+  = X$.
+\end{problem}
+% \subsection{Exercise 3.13}~
+% \begin{problem}[B2]
+%   When showing that
+% \end{problem}
+
+\section{Comments on TeX / Notation}
+\begin{problem}[C1]
+  You might consider using $\ms T$ instead of $\mc T$ to refer to a topology, to
+  be consistent with Prof.\ Su's book:
+  \begin{lstlisting}
+% Use a better script font
+\usepackage[mathscr]{euscript}
+\newcommand*{\ms}[1]{\ensuremath{\mathscr{#1}}}\end{lstlisting}\vspace{-3em}
+  which you can then call simply by \texttt{\ms T}.
+\end{problem}
+\begin{problem}[C2]
+  I saw a lot of people using $B(p, r)$ (or was it $B(r,p)$?) to denote ``the
+  ball of radius $\epsilon$ centered about point $p$.'' As far as I can tell,
+  this is non-standard notation; I think most people use $B_r(p)$ instead.
+\end{problem}
+\end{document}

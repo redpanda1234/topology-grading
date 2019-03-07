@@ -1,0 +1,236 @@
+\documentclass{fkpset}
+
+\name{Forest Kobayashi}
+\class{Topology}
+\duedate{02/16/2019}
+\assignment{HW 2 Comments}
+
+\chead{HW 2 Comments}
+\rhead{Math 147 -- Spring 2019}
+
+\usepackage{hyperref}
+\usepackage{fkmisc}
+
+\lstset{language=[LaTeX]TeX,
+  % Colors and stuff
+  backgroundcolor=\color{white},     % choose the background color
+  basicstyle=\footnotesize\ttfamily, % set size + style of font
+  %
+  commentstyle=\color{mygray},% comment style
+  identifierstyle=\color{blue},
+  keywordstyle=\color{mygreen},      % keyword style
+  stringstyle=\color{orange},        % string literal style
+  %
+  % Whitespace handling
+  breakatwhitespace=false,           %
+  breaklines=true,                   % sets automatic line breaking
+  keepspaces=true,                   % needs (columns=flexible)?
+  showspaces=false,                  % Don't add weird underscores
+  showstringspaces=false,            % Same
+  showtabs=false,                    % Same
+  tabsize=2,	                       % 1 tab = 2 spaces
+  xleftmargin=2em,                   % Properly indent listing
+  %
+  % Caption
+  belowcaptionskip=1\baselineskip,   % Spacing to caption
+  captionpos=b,                      % caption at bottom
+  title=\lstname,                    % show fname w/ \lstinputlisting
+  %
+  % Framing & Numbering
+  frame=L,	                        % adds a frame on the left
+  numbers=left,                      % linum loc. (none, left, right)
+  numbersep=10pt,                    % distance of linum to code
+  numberstyle=\tiny\color{numgray},  % style used for the line-numbers
+  rulecolor=\color{black},           %
+  stepnumber=1,                      % number every line
+  %
+  % Misc
+  language=[LaTeX]Tex,                   % default language
+  % texcsstyle=*\bf\color{blue},
+  % otherkeywords={$, \{, \}, \[, \]},
+}
+
+\begin{document}
+\section{Writing Style Comments}
+% In general: give your reader what they need, and exactly what they need. Being
+% terse does not inherently mean omitting details, it really means highlighting
+% the important ones
+\begin{problem}[A1]
+  When defining something, put it on the left side of the equals sign. Do not
+  write something like
+  \begin{leftbar}
+    % Let ($X, \ms T$) be a topological space, and let $A \subset X$. Then define
+    % the \emph{interior} of $A$ (denoted $A^\circ$ or $\mrm{int}(A)$) by
+    Let
+    \[
+      \bigcup_{\mathclap{\substack{U \in \ms T\\ U \subset A}}} U = A^\circ
+    \]
+  \end{leftbar}
+  to define $A^\circ$. Instead, say
+  \begin{leftbar}
+    Let
+    \[
+      A^\circ = \bigcup_{\mathclap{\substack{U \in \ms T\\ U \subset A}}} U
+    \]
+  \end{leftbar}
+\end{problem}
+\begin{problem}[A2]
+  While Prof.\ Su's book does define a \emph{neighborhood} of a point $x$ to be
+  some open set containing $x$, in an extended proof it's probably best to avoid
+  this term. Reasons:
+  \begin{enumerate}
+    \item If you're using the same neighborhood repeatedly throughout your
+      proof, it's much shorter to make the declaration
+      \begin{leftbar}
+        Let $U \in \ms T$ such that $x \in U$
+      \end{leftbar}
+      and use $U$ for the rest of the proof instead of saying ``the
+      neighborhood'' repeatedly.
+    \item It's easy to forget to specify what the neighborhood is \emph{of}.
+      Remember, we've defined a neighborhood \emph{of} $x$ to be an open set
+      containing $x$. Without stating what $x$ we're looking at, a neighborhood
+      has no meaning. I saw a few situations on the homework where people said
+      things along the lines of
+      \begin{leftbar}
+        ``[\ldots] so for each $x$, there exists $q$ such that [\ldots]. Then
+        taking any neighborhood we see that [\ldots]''
+      \end{leftbar}
+      it's not clear here whether we're taking a neighborhood of $x$ or of $q$.
+      Don't leave this for the reader to figure out!
+    \item Finally, the definition of a neighborhood isn't universally
+      standardized. Some mathematicians draw a distinction between a
+      \emph{neighborhood} and an \emph{open neighborhood}:\\
+      \begin{definition}
+        Let $(X,\ms T)$ be a topological space. Let $x \in X$, and $N \subset
+        X$. Then $N$ is called a \emph{neighborhood} of $x$ iff there exists $U
+        \in \ms T$ such that $x \in U \subset N$. If $N \in \ms T$, we call $N$
+        an \emph{open neighborhood} of $x$.
+      \end{definition}~
+
+      Thus, saying ``neighborhood'' has the potential to confuse your reader.
+  \end{enumerate}
+  For these reasons, it's probably best to use ``neighborhood'' sparingly. As a
+  general rule of thumb, any time you'll need to use it more than once, you
+  should define some $U \in \ms T$ instead.
+\end{problem}
+\begin{problem}[A3]
+  Don't say ``the set $A$'' if it's already implicitly clear that $A$ is a set.
+  Similarly with things like ``the point $p$.''
+\end{problem}
+\begin{problem}[A4]
+  If you define your variables carefully at the start of a proof, you can cut
+  out a lot of redundant phrases from the end of your proof. For instance, if
+  you're trying to show a claim holds for all open sets $U$, then you need only
+  start your proof with
+  \begin{leftbar}
+    Let $U \in \ms T$ be arbitrary. Then [\ldots]
+  \end{leftbar}
+  and conclude with
+  \begin{leftbar}
+    Since $U$ was arbitrarily chosen, [\ldots].
+  \end{leftbar}
+  When you have more than two or three variables at play, this makes a big
+  difference:
+  \begin{leftbar}
+    Since $U,V$, and $p$ were arbitrarily chosen, [\ldots]
+  \end{leftbar}
+\end{problem}
+\begin{problem}[A5]
+  Try not to implicitly employ contradiction, unless the claim is \emph{very}
+  simple. I saw a lot of things like the following:
+  \begin{leftbar}
+    ``We have $A$. We must have $B$, or else $\neg C$, but $A$'' (where the
+    reader is left to infer that $A \implies C$).
+  \end{leftbar}
+  In general, the only time this is acceptable is when $C$ is a premise we have
+  already established. That is, things like
+  \begin{leftbar}
+    ``We have $A$. Then [\ldots], and so $C$. Note that $\neg B \implies \neg
+    C$, hence $B$''
+  \end{leftbar}
+  can sometimes be acceptable. Here're the general guidelines:
+  \begin{itemize}
+    \item If the proof of $A\implies C$ is $\approx 1$ step, then use the format
+      above.
+    \item If the proof of $A \implies C$ is $\approx 1$-$2$ steps, you can put
+      the proof of $A \implies C$ in a footnote or a parenthetical. If it's on
+      the longer side, definitely use a footnote.
+    \item If the proof of $A \implies C$ is $\approx 3+$ steps, you should
+      probably do a full proof by contradiction.
+  \end{itemize}
+\end{problem}
+\begin{problem}[A6]
+  If you're claiming something is a topology, don't refer to it as ``the
+  topology'' until you've finished proving that it satisfies all the topological
+  axioms. Similarly with claiming something is open, closed, etc.
+\end{problem}
+\begin{problem}[A8]
+  In an iff proof (or analogous), you should usually define any global variables
+  before you begin each arm of the proof.
+\end{problem}
+\begin{problem}[A9]
+  For the purposes of our psets, if you find yourself saying ``in other words,''
+  it's often worth checking your previous sentence to see if there's a better
+  way you could phrase things that'd eliminate this redundancy.
+\end{problem}
+\section{Correctness}
+\subsection{Exercise 3.30}
+\begin{problem}[B1]
+  Make sure to treat the special case where $p \in \set{x_i}_{i \in \NN}$. For
+  instance, if you say the following
+  \begin{leftbar}
+    Let $\set{x_i}_{i\in\NN} \subset A$, and suppose $x_i \to p$. Let $U \in \ms
+    T$ such that $p \in U$. Then by definition of convergence, $\exists N \in
+    \NN$ such that for all $i > N$, $x_i \in U$. Thus, {\color{red}
+      $\set{x_i}_{i>N} \subset (U - \set{p}) \cap A$}, hence [\ldots].
+  \end{leftbar}
+  this doesn't hold if for all $i > N$, $x_i = p$.
+\end{problem}
+\subsection{Exercise 4.3}
+\begin{problem}[B2]
+  When proving that $\ms B$ generates a topology $\ms T$, in verifying the
+  topological axioms, be sure you show that that $\ms T$ is closed under finite
+  intersection, not that $\ms B$ is (although this is also true). To do so, you
+  should define arbitrary $U,V \in \ms T$, and show that $U \cap V \in \ms T$.
+  Be sure not to accidentally pick $U,V \in \ms B$!
+\end{problem}
+\section{Comments on TeX / Notation}
+\begin{problem}[C1]
+  Usually, it's easier to read something like
+  \[
+    A^\circ = \bigcup_{\substack{U \in \mathscr T \\ U \subset A}} U
+  \]
+  over
+  \[
+    A^\circ = \bigcup_{U \in \ms T, U \subset A} U
+  \]
+  To do multi-line subscripts for things like \verb|\bigcup| in \LaTeX, you'll
+  want to use \verb|\substack| (requires the \texttt{amsmath} package):
+  \begin{lstlisting}
+\[
+  A^\circ = \bigcup_{\substack{U \in \ms T \\ U \subset A}} U
+\]\end{lstlisting}\vspace{-3em}
+  If the subscript is still really long even when using \verb|\substack| and you
+  don't like the whitespace you're getting, e.g.
+  \[
+    A = \bigcup_{\substack{\rm look\\ \rm how\\\rm ultra-super-wide\\\rm
+        this\\\rm subscript\\\rm is}} U
+  \]
+  you can close the gap by enclosing your subscript with \verb|\mathclap|:
+  \[
+    A = \bigcup_{\mathclap{\substack{\rm look\\ \rm how\\\rm ultra-super-wide\\\rm
+        this\\\rm subscript\\\rm is}}} U
+  \]
+  or, applied to our earlier example,
+  \[
+    A^\circ = \bigcup_{\mathclap{U \in \mathscr T, U \subset A}} U.
+  \]
+  this requires the \texttt{mathtools} package, and the code is as follows:
+  \begin{lstlisting}
+\[
+  A^\circ = \bigcup_{\mathclap{U \in \mathscr T, U \subset A}} U.
+\]\end{lstlisting}\vspace{-3em}
+  of course, you can put a \verb|\substack| inside a \verb|\mathclap| to combine
+  the effects.
+\end{problem}
+\end{document}

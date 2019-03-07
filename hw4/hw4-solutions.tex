@@ -1,0 +1,778 @@
+\documentclass{fkpset}
+
+\newgeometry{bmargin=1in, tmargin=1.25in, lmargin=.75in, rmargin=.75in}
+\fancyhfoffset[R]{.05cm}
+
+\name{Forest Kobayashi}
+\class{Math 147}
+\duedate{03/03/2019}
+\assignment{HW 4 Solutions}
+
+\chead{HW 4 Solutions}
+\rhead{Math 147 -- Spring, 2019}
+
+\lfoot{Sunday, March 3rd 2019}
+
+\renewcommand{\thesubfigure}{\roman{subfigure}}
+
+\newcommand{\sq}{{\rm sq}}
+\newcommand{\RRLL}{\ensuremath \RR_{\rm LL}}
+\newcommand{\tprod}{\ensuremath \ms T_{\rm prod}}
+\newcommand{\bprod}{\ensuremath \ms B_{\rm prod}}
+\newcommand{\tbox}{\ensuremath \ms T_{\rm box}}
+\newcommand{\bbox}{\ensuremath \ms B_{\rm box}}
+\newcommand{\tstar}{\ensuremath \ms T_{\star}}
+\newcommand{\bstar}{\ensuremath \ms B_{\star}}
+
+\renewcommand{\qed}{\hspace{.85\textwidth} $\blacksquare$}
+
+\newenvironment{why}{\begin{adjustwidth}{0.01\linewidth}{0.05\linewidth}~}%
+  {\end{adjustwidth}}
+
+\begin{document}
+\pagestyle{plain}
+\pagestyle{fancy}
+  \vspace{-3cm}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{@{}lcccccr@{}}\toprule
+      Problems & 4.31(F) & 4.41 & 5.1 & 5.5 & 5.9 & Total \\ \midrule
+      Points   &         &      &     &     &     &       \\ \bottomrule
+    \end{tabular}
+  \end{table}
+  \vspace{1cm}
+
+% --------------------------- Problem 1 ---------------------------- %
+  \begin{problem}[4.31(F)]
+    Consider the following subspace of the lexicographically ordered
+    square:
+    \[
+      F = \set{(x,1) \MID 0 < x < 1}.
+    \]
+    As a set, it is a line. Describe its relative topology, noting any
+    connections to the topologies you have seen already.
+  \end{problem}
+  % There was a slight spacing difference for my leftbar environment
+  % that doesn't really merit changing in generality, so I just went
+  % with this hack.
+  \begin{why}
+    \small
+    \begin{leftbar}
+      \textbf{General Note:} Honestly, the edge cases here make this
+      problem a bit of a mess. Feel free to gloss over them by drawing
+      diagrams for each case instead of actually writing things out
+      formally. I've included everything here for the sake of
+      completeness, but you should feel free to omit some parts. Just
+      make it clear to me that you know \emph{why} everything has the
+      form it should! \texttt{:)}
+    \end{leftbar}
+    \begin{leftbar}
+      \textbf{Notational Notes:} For the purposes of this problem, we
+      will use boldface/angled brackets to denote points, and
+      parentheses for open intervals. E.g., $\Pp = \ip{a,b} \in
+      \RR^2$, whereas $\pn{a,b} \subset \RR$. Note, under this
+      notational scheme, ``open intervals'' in the lexicographically
+      ordered square will thus be denoted by something like
+      $\pn{\ip{a_0, b_0}, \ip{a_1, b_1}}$:
+      \[
+        \pn[Big]{\ip{a_0, b_0}, \ip{a_1, b_1}} =
+        \set[Big]{\ip{x,y} \MID \ip{a_0, b_0} < \ip{x,y} < \ip{a_1,
+            b_1}}
+      \]
+      using square brackets when appropriate. Note that if we have
+      previously defined $\Pp_0 = \ip{a_0, b_0}$, $\Pp_1 = \ip{a_1,
+        b_1}$, then we would just write this as $\pn{\Pp_0, \Pp_1}$.
+
+      Also, injection will be denoted $f : A \into B$, surjection by
+      $f : A \onto B$, and bijection by $f : A \bij B$.
+    \end{leftbar}
+  \end{why}
+  \begin{solution}
+    Let $(X_\sq, \ms T_\sq)$ be the lexicographically ordered square,
+    and $\ms B_\sq$ be the canonical basis for $\ms T_\sq$. Let $\ms
+    T_F$ be the relative topology on $F$ inherited from $X_\sq$. Also
+    let $(I, \ms T_I)$ be the interval $(0,1)$ together with the
+    subspace topology inherited from $\RRLL$. Then we claim $(F, \ms
+    T_F)$ is ``equivalent'' to $(I, \ms T_I)$ (denoted $\ms T_F \cong
+    \ms T_I$).\footnote{Note: Technically, the formal term to use here
+      is ``homeomorphic.'' Homeomorphism is the notion of a
+      topological ``equivalence,'' or in the language of Category
+      Theory, ``isomorphism in the category of topological spaces''.
+      This won't be covered formally until section 8.3, but the idea
+      is that homeomorphisms are bijections preserving open sets. This
+      property of ``preserving open sets'' will become our topological
+      definition of continuity, and in this context, a homeomorphism
+      will be a continuous function with a continuous inverse.}
+
+    \emph{Proof:}
+    By theorem 4.30,
+    \[
+      \ms B_F = \set{B \cap F \MID B \in \ms B_\sq}
+    \]
+    is a basis for $\ms T_F$. Thus, to show $\ms T_F \cong \ms T_I$,
+    it will suffice to characterize elements of $\ms B_F$ (Claim 1)
+    and put them in correspondence with a basis for $\ms T_I$ (Claim
+    2).
+
+    \emph{Claim 1:} Elements of $\ms B_F$ are of the following
+    forms:\footnote{Note, (2) and (3) can also be written as $\pn{a,b}
+      \times \set{1}$ and $\bp{a,b} \times \set{1}$,
+      respectively}
+    \begin{enumerate}[label=(\arabic*)]
+      \item $\varnothing$
+      \item $\set{\ip{x,1} \in F \MID a < x < b}\quad$ (where $a,b \in
+        (0,1)$)
+      \item $\set{\ip{x,1} \in F \MID a \leq x < b}\quad$ (where $a,b
+        \in (0,1)$)
+    \end{enumerate}
+    \emph{Proof of Claim 1:} Let $B_F \in \ms B_F$ be arbitrary. Then
+    $\exists B_\sq \in \ms B_\sq$ such that $B_F = B_\sq \cap F$. Let
+    $\mb 0 = \ip{0,0}$ and $\mb 1 = \ip{1,1}$. By definition of $\ms
+    B_\sq$, $B_\sq$ is of one of the following forms:\clearpage
+    \begin{enumerate}
+      \item $\bp[Big]{\mb 0, \ip{a_1, b_1}}$,
+      \item $\pn[Big]{\ip{a_0, b_0}, \ip{a_1, b_1}}$,
+      \item $\pb[Big]{\ip{a_0, b_0}, \mb 1}$
+    \end{enumerate}
+    We proceed by casework.
+    \begin{enumerate}
+      \item Suppose $B_\sq = \bp[Big]{\mb 0, \ip{a_1, b_1}}$. Then
+        \[
+          B_\sq \cap F = \set[Big]{\ip{x,1} \in X_\sq \MID \mb 0 <
+            \ip{x,1} < \ip{a_1, b_1}}.
+        \]
+        We will consider the cases of $\ip{a_1,b_1} \leq \ip{0,1}$ and
+        $\ip{0,1} < \ip{a_1,b_1}$. Note that these cases are disjoint
+        and exhaustive.
+        \begin{enumerate}[label=\roman*)]
+          \item If $\ip{a_1,b_1} \leq \ip{0,1}$, $F \cap B =
+            \varnothing$ (see diagram). This is of form
+            (1).\footnote{Note this holds even if $\ip{a_1,b_1} =
+              \ip{0,1}$, because the green endpoint is non-inclusive.}
+            \begin{figure}[H]
+              \centering
+              \begin{tikzpicture}[scale=4]
+                % Coordinates for F and X
+                \path
+                coordinate (00) at (0,0)
+                coordinate (01) at (0,1)
+                coordinate (10) at (1,0)
+                coordinate (11) at (1,1);
+
+                \draw[green, thick] (01) -- (11);
+                \draw[thick, red] (00) -- (0,.6);
+
+                \fill[gray!10!white] (00) -- (01) -- (11) -- (10) -- (00) -- cycle;
+                \draw[draw=red, fill=red] (00) circle (.5pt) node[left, yshift=-4pt] {$\color{red} \mb 0$};
+                \draw[draw=green, fill=white] (01) circle (.5pt) node[left, yshift=4pt] {$\color{green}\ip{0,1}$};
+                \draw[gray!70!white, fill=gray!20!white] (10) circle (.5pt) node[right, yshift=-4pt] {$\color{gray!70!white} \ip{1,0}$};
+                \draw[draw=green, fill=white] (11) circle (.5pt) node[right, yshift=4pt] {$\color{green}\mb 1$};
+
+                \draw[red, fill=white] (0,.6) circle (.5pt) node[left, xshift=-6pt] {$\color{red} \ip{a_1, b_1}$};
+
+
+                \draw [
+                  red,
+                  postaction=decorate,
+                    decoration={
+                      markings,
+                      mark=at position .5 with {\arrow{angle 45}}
+                    }
+                ] (00) -- (0,.6);
+
+                \draw [
+                  red,
+                  decorate,
+                  decoration={
+                    brace,
+                    amplitude=6pt
+                  },
+                  xshift=-1pt,
+                  yshift=0pt
+                ] (0,.025) -- (0,.575) node [red, midway, xshift=-0.4cm] {\footnotesize $B$};
+
+                \draw [
+                  green,
+                  decorate,
+                  decoration={
+                    brace,
+                    amplitude=6pt
+                  },
+                  xshift=0pt,
+                  yshift=1pt
+                ] (0.025,1) -- (.975,1) node [green, midway, yshift=0.4cm] {\footnotesize $F$};
+              \end{tikzpicture}
+              \caption{${\color{green}F} \cap {\color{red}B} = \color{blue}
+                \varnothing$.}
+            \end{figure}
+          \item Suppose $\ip{0,1} < \ip{a_1,b_1}$. Then
+            ${\color{green}F} \cap {\color{red}B} =
+            {\color{blue}\set{\ip{x,1} \in X_\sq \MID x \in (0,a_1)}}
+            = {\color{blue}\pn{0,a_1} \times \set{1}}$ (see
+            diagram).\footnote{Note that $\ip{0,1} \not\in F \cap B$
+              by definition of $F$.} This is of form (2).
+            \begin{figure}[H]
+              \centering
+              \begin{tikzpicture}[scale=4]
+                % Coordinates for F and X
+                \path
+                coordinate (00) at (0,0)
+                coordinate (01) at (0,1)
+                coordinate (10) at (1,0)
+                coordinate (11) at (1,1)
+                coordinate (a1) at (.3,0)
+                coordinate (rmax) at (.3,.7)
+                coordinate (bmax) at (.3,1);
+
+                \fill[gray!10!white] (a1) -- (bmax) -- (11) -- (10) -- (a1) -- cycle;
+
+                \fill[red!15!white] (00) -- (01) -- (bmax) -- (a1) -- (00) -- cycle;
+
+                \draw[green, thick] (01) -- (11);
+                \draw[red] (01) -- (00) -- (a1);
+                \draw[blue, thick] (01) -- (bmax);
+
+                \draw[red, dashed] (rmax) -- (bmax);
+
+                \draw[
+                  red,
+                  postaction={
+                    decorate,
+                    decoration={
+                      markings,
+                      mark=at position .5 with {\arrow{angle 45}}
+                    }
+                  }
+                ] (00)--(01);
+
+                \draw[
+                  red,
+                  postaction={
+                    decorate,
+                    decoration={
+                      markings,
+                      mark=at position .5 with {\arrow{angle 45}}
+                    }
+                  }
+                ] (a1) -- (rmax);
+
+                \draw[red, fill=white] (rmax) circle (.5pt) node[right, xshift=4pt] {$\color{red} \ip{a_1, b_1}$};
+
+                \draw [
+                  blue,
+                  decorate,
+                  decoration={
+                    brace,
+                    amplitude=6pt
+                  },
+                  xshift=0pt,
+                  yshift=.5pt
+                ] (.025,1) -- (0.275,1) node [blue, midway, yshift=0.4cm] {\footnotesize $F \cap B$};
+
+                \draw[draw=red, fill=red] (00) circle (.5pt) node[left, yshift=-4pt] {$\color{red} \mb 0$};
+
+                \draw[draw=blue, fill=white] (01) circle (.5pt) node[above left, yshift=2pt] {$\color{blue}\ip{0,1}$};
+                \draw[draw=blue, fill=white] (bmax) circle (.5pt) node[above right, yshift=2pt] {$\color{blue}\ip{a_1,1}$};
+                \draw[gray!70!white, fill=gray!20!white] (10) circle (.5pt) node[right, yshift=-4pt] {$\color{gray!70!white} \ip{1,0}$};
+                \draw[draw=green, fill=white] (11) circle (.5pt) node[right, yshift=4pt] {$\color{green}\mb 1$};
+
+              \end{tikzpicture}
+              \caption{${\color{green}F} \cap {\color{red}B} =
+                {\color{blue} \pn{0, a_1} \times \set{1}}$.}
+            \end{figure}
+        \end{enumerate}
+        hence, if $B_\sq$ is of form (a), then $B_\sq \cap F$ is of
+        the desired form. \cmark
+      \item Now, suppose $B_\sq = \pn{\ip{a_0, b_0}, \ip{a_1, b_1}}$.
+        Omitting the details, we have the following cases: (i) $a_0 =
+        a_1$, (ii) $a_0 \neq a_1$ and $b_0 = 1$, and (iii) $a_0 \neq
+        a_1$ and $b_0 \neq 1$.
+        \begin{figure}[H]
+          \centering
+          \begin{subfigure}{.32\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=3.5]
+              % Coordinates for F and X
+              \path
+              coordinate (00) at (0,0)
+              coordinate (01) at (0,1)
+              coordinate (10) at (1,0)
+              coordinate (11) at (1,1)
+              coordinate (a1) at (.3,0)
+              coordinate (rmin) at (.3,.2)
+              coordinate (rmax) at (.3,.8)
+              coordinate (bmax) at (.3,1);
+
+              \fill[gray!10!white] (00) -- (01) -- (11) -- (10) -- (00) -- cycle;
+
+              \draw[green, thick] (01) -- (11);
+              \draw[red, dashed] (a1) -- (rmin) (rmax) -- (bmax);
+
+              \draw[
+              red,
+              postaction={
+                decorate,
+                decoration={
+                  markings,
+                  mark=at position .5 with {\arrow{angle 45}}
+                }
+              }
+              ] (rmin)--(rmax);
+
+              \draw[red, fill=white] (rmin) circle (.5pt) node[right, xshift=4pt] {$\color{red} \ip{a_0, b_0}$};
+
+              \draw[red, fill=white] (rmax) circle (.5pt) node[right, xshift=4pt] {$\color{red} \ip{a_1, b_1}$};
+
+              \draw[draw=gray!70!white, fill=gray!20!white] (00) circle (.5pt) node[left, yshift=-4pt] {$\color{gray!70!white} \mb 0$};
+
+              \draw[draw=green, fill=white] (01) circle (.5pt) node[left, yshift=4pt] {$\color{green}\ip{0,1}$};
+              \draw[gray!70!white, fill=gray!20!white] (10) circle (.5pt) node[right, yshift=-4pt] {$\color{gray!70!white} \ip{1,0}$};
+              \draw[draw=green, fill=white] (11) circle (.5pt) node[right, yshift=4pt] {$\color{green}\mb 1$};
+
+            \end{tikzpicture}
+            \caption{\texttt{if} $a_0 = a_1$, ${\color{green}F} \cap
+              {\color{red}B} = {\color{blue} \varnothing}$.}
+          \end{subfigure}
+          \begin{subfigure}{.32\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=3.5]
+              % Coordinates for F and X
+              \path
+              coordinate (00) at (0,0)
+              coordinate (01) at (0,1)
+              coordinate (10) at (1,0)
+              coordinate (11) at (1,1)
+              coordinate (a0) at (.3,0)
+              coordinate (a1) at (.61,0)
+              coordinate (rmin) at (.3,1)
+              coordinate (rmax) at (.61,.6)
+              coordinate (bmin) at (.3,1)
+              coordinate (bmax) at (.61,1);
+
+              \fill[gray!10!white] (00) -- (01) -- (11) -- (10) -- (00) -- cycle;
+              \fill[red!15!white] (a0) -- (bmin) -- (bmax) -- (a1) -- (a0) -- cycle;
+
+              \draw[green, thick] (01) -- (11);
+              \draw[red, dashed] (a0) -- (rmin) (rmax) -- (bmax);
+              \draw[blue, thick] (bmin) -- (bmax);
+
+              \draw[
+              red,
+              postaction={
+                decorate,
+                decoration={
+                  markings,
+                  mark=at position .5 with {\arrow{angle 45}}
+                }
+              }
+              ] (a1)--(rmax);
+
+              \draw[red, fill=white] (rmin) circle (.5pt) node[below left, xshift=-1pt] {\scriptsize$\color{red} \ip{a_0, b_0}$};
+
+              \draw[red, fill=white] (rmax) circle (.5pt) node[right, xshift=2pt] {\scriptsize$\color{red} \ip{a_1, b_1}$};
+
+              \draw[blue, fill=white] (bmin) circle (.5pt) node[above, yshift=2pt] {\scriptsize $\color{blue} \ip{a_0, 1}$};
+
+              \draw[blue, fill=white] (bmax) circle (.5pt) node[above, yshift=2pt] {\scriptsize $\color{blue} \ip{a_1, 1}$};
+
+              \draw[draw=gray!70!white, fill=gray!20!white] (00) circle (.5pt) node[left, yshift=-4pt] {$\color{gray!70!white} \mb 0$};
+
+              \draw[draw=green, fill=white] (01) circle (.5pt) node[left, yshift=4pt] {$\color{green}\ip{0,1}$};
+              \draw[gray!70!white, fill=gray!20!white] (10) circle (.5pt) node[right, yshift=-4pt] {$\color{gray!70!white} \ip{1,0}$};
+              \draw[draw=green, fill=white] (11) circle (.5pt) node[right, yshift=4pt] {$\color{green}\mb 1$};
+
+            \end{tikzpicture}
+            \caption{\texttt{elif} $b_0=1$, ${\color{green} F} \cap {\color{red}
+                B} = {\color{blue} \pn{a_0, a_1} \times \set{1}}$}
+          \end{subfigure}
+          \begin{subfigure}{.32\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=3.5]
+              % Coordinates for F and X
+              \path
+              coordinate (00) at (0,0)
+              coordinate (01) at (0,1)
+              coordinate (10) at (1,0)
+              coordinate (11) at (1,1)
+              coordinate (a0) at (.3,0)
+              coordinate (a1) at (.61,0)
+              coordinate (rmin) at (.3,.6)
+              coordinate (rmax) at (.61,.4)
+              coordinate (bmin) at (.3,1)
+              coordinate (bmax) at (.61,1);
+
+              \fill[gray!10!white] (00) -- (01) -- (11) -- (10) -- (00) -- cycle;
+              \fill[red!15!white] (a0) -- (bmin) -- (bmax) -- (a1) -- (a0) -- cycle;
+
+              \draw[green, thick] (01) -- (11);
+              \draw[red, dashed] (a0) -- (rmin) (rmax) -- (bmax);
+              \draw[blue, thick] (bmin) -- (bmax);
+
+              \draw[
+              red,
+              postaction={
+                decorate,
+                decoration={
+                  markings,
+                  mark=at position .5 with {\arrow{angle 45}}
+                }
+              }
+              ] (rmin)--(bmin);
+
+              \draw[
+              red,
+              postaction={
+                decorate,
+                decoration={
+                  markings,
+                  mark=at position .5 with {\arrow{angle 45}}
+                }
+              }
+              ] (a1)--(rmax);
+
+              \draw[red, fill=white] (rmin) circle (.5pt) node[left, xshift=-1pt] {\scriptsize$\color{red} \ip{a_0, b_0}$};
+
+              \draw[red, fill=white] (rmax) circle (.5pt) node[right, xshift=2pt] {\scriptsize$\color{red} \ip{a_1, b_1}$};
+
+              \draw[blue, fill=blue] (bmin) circle (.5pt) node[above, yshift=2pt] {\scriptsize $\color{blue} \ip{a_0, 1}$};
+
+              \draw[blue, fill=white] (bmax) circle (.5pt) node[above, yshift=2pt] {\scriptsize $\color{blue} \ip{a_1, 1}$};
+
+              \draw[draw=gray!70!white, fill=gray!20!white] (00) circle (.5pt) node[left, yshift=-4pt] {$\color{gray!70!white} \mb 0$};
+
+              \draw[draw=green, fill=white] (01) circle (.5pt) node[left, yshift=4pt] {$\color{green}\ip{0,1}$};
+              \draw[gray!70!white, fill=gray!20!white] (10) circle (.5pt) node[right, yshift=-4pt] {$\color{gray!70!white} \ip{1,0}$};
+              \draw[draw=green, fill=white] (11) circle (.5pt) node[right, yshift=4pt] {$\color{green}\mb 1$};
+
+            \end{tikzpicture}
+            \caption{\texttt{else}, ${\color{green} F} \cap {\color{red} B} =
+              {\color{blue} \bp{a_0, a_1} \times \set{1}}$}
+          \end{subfigure}
+          \caption{Subcases}
+        \end{figure}
+        these have the forms (1), (2), and (3), respectively.
+      \item Finally, suppose $B_\sq$ has the form $\pb[Big]{\ip{a_0,
+            b_0}, \mb 1}$. Then we have the following cases: (i) $a_0
+        = 1$, (ii) $a_0 < 1$ and $b_0=1$, and (iii) $a_0 < 1$ and $b_0
+        < 1$. Note that these cases are disjoint and exhaustive.
+        \begin{figure}[H]
+          \centering
+          \begin{subfigure}{.32\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=3.5]
+              % Coordinates for F and X
+              \path
+              coordinate (00) at (0,0)
+              coordinate (01) at (0,1)
+              coordinate (10) at (1,0)
+              coordinate (11) at (1,1)
+              coordinate (a1) at (1,0)
+              coordinate (rmin) at (1,.2)
+              coordinate (rmax) at (1, 1)
+              coordinate (bmax) at (1, 1);
+
+              \fill[gray!10!white] (00) -- (01) -- (11) -- (10) -- (00) -- cycle;
+
+              \draw[green, thick] (01) -- (11);
+              \draw[red, dashed] (a1) -- (rmin) (rmax) -- (bmax);
+
+              \draw[
+              red,
+              postaction={
+                decorate,
+                decoration={
+                  markings,
+                  mark=at position .5 with {\arrow{angle 45}}
+                }
+              }
+              ] (rmin)--(rmax);
+
+              \draw[red, fill=white] (rmin) circle (.5pt) node[right, xshift=4pt] {$\color{red} \ip{a_0, b_0}$};
+
+              \draw[draw=gray!70!white, fill=gray!20!white] (00) circle (.5pt) node[left, yshift=-4pt] {$\color{gray!70!white} \mb 0$};
+
+              \draw[draw=green, fill=white] (01) circle (.5pt) node[left, yshift=4pt] {$\color{green}\ip{0,1}$};
+              \draw[gray!70!white, fill=gray!20!white] (10) circle (.5pt) node[right, yshift=-4pt] {$\color{gray!70!white} \ip{1,0}$};
+              \draw[draw=green, fill=white] (11) circle (.5pt) node[right, yshift=4pt] {${\color{green}\mb 1}$};
+
+            \end{tikzpicture}
+            \caption{\texttt{if} $a_0 = 1$, ${\color{green}F} \cap
+              {\color{red}B} = {\color{blue} \varnothing}$.}
+          \end{subfigure}
+          \begin{subfigure}{.32\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=3.5]
+              % Coordinates for F and X
+              \path
+              coordinate (00) at (0,0)
+              coordinate (01) at (0,1)
+              coordinate (10) at (1,0)
+              coordinate (11) at (1,1)
+              coordinate (a0) at (.53,0)
+              coordinate (a1) at (1,0)
+              coordinate (rmin) at (.53,1)
+              coordinate (rmax) at (1, 1)
+              coordinate (bmin) at (.53,1)
+              coordinate (bmax) at (1,1);
+
+              \fill[gray!10!white] (00) -- (01) -- (11) -- (10) -- (00) -- cycle;
+              \fill[red!15!white] (a0) -- (bmin) -- (bmax) -- (a1) -- (a0) -- cycle;
+
+              \draw[green, thick] (01) -- (11);
+              \draw[red, dashed] (a0) -- (rmin) (rmax) -- (bmax);
+              \draw[red] (rmin) -- (bmin);
+              \draw[blue, thick] (bmin) -- (bmax);
+
+              \draw[
+              red,
+              postaction={
+                decorate,
+                decoration={
+                  markings,
+                  mark=at position .5 with {\arrow{angle 45}}
+                }
+              }
+              ] (a1)--(rmax);
+
+              \draw[red, fill=white] (rmax) circle (.5pt) node[right, xshift=2pt] {};
+
+              \draw[blue, fill=white] (bmin) circle (.5pt) node[above, yshift=2pt] {\scriptsize ${\color{blue} \ip{a_0, 1}} = {\color{red} \ip{a_0, b_0}}$};
+
+              \draw[blue, fill=white] (bmax) circle (.5pt) node[above, yshift=2pt] {};
+
+              \draw[draw=gray!70!white, fill=gray!20!white] (00) circle (.5pt) node[left, yshift=-4pt] {$\color{gray!70!white} \mb 0$};
+
+              \draw[draw=green, fill=white] (01) circle (.5pt) node[left, yshift=4pt] {$\color{green}\ip{0,1}$};
+              \draw[red,fill=red] (10) circle (.5pt) node[right, yshift=-4pt] {$\color{red} \ip{1,0}$};
+              \draw[draw=green, fill=white] (11) circle (.5pt) node[right, yshift=4pt] {${\color{green}\mb 1}$};
+
+            \end{tikzpicture}
+            \caption{\texttt{elif} $b_0 = 1$, ${\color{green} F} \cap
+              {\color{red} B} = {\color{blue} \pn{a_0, 1} \times \set{1}}$}
+          \end{subfigure}
+          \begin{subfigure}{.32\linewidth}
+            \centering
+            \begin{tikzpicture}[scale=3.5]
+              % Coordinates for F and X
+              \path
+              coordinate (00) at (0,0)
+              coordinate (01) at (0,1)
+              coordinate (10) at (1,0)
+              coordinate (11) at (1,1)
+              coordinate (a0) at (.53,0)
+              coordinate (a1) at (1,0)
+              coordinate (rmin) at (.53,.6)
+              coordinate (rmax) at (1, 1)
+              coordinate (bmin) at (.53,1)
+              coordinate (bmax) at (1,1);
+
+              \fill[gray!10!white] (00) -- (01) -- (11) -- (10) -- (00) -- cycle;
+              \fill[red!15!white] (a0) -- (bmin) -- (bmax) -- (a1) -- (a0) -- cycle;
+
+              \draw[green, thick] (01) -- (11);
+              \draw[red, dashed] (a0) -- (rmin) (rmax) -- (bmax);
+              \draw[red] (rmin) -- (bmin);
+              \draw[blue, thick] (bmin) -- (bmax);
+
+              \draw[
+              red,
+              postaction={
+                decorate,
+                decoration={
+                  markings,
+                  mark=at position .5 with {\arrow{angle 45}}
+                }
+              }
+              ] (rmin)--(bmin);
+
+              \draw[
+              red,
+              postaction={
+                decorate,
+                decoration={
+                  markings,
+                  mark=at position .5 with {\arrow{angle 45}}
+                }
+              }
+              ] (a1)--(rmax);
+
+              \draw[red, fill=white] (rmin) circle (.5pt) node[below left, xshift=-1pt] {\scriptsize$\color{red} \ip{a_0, b_0}$};
+
+              \draw[red, fill=white] (rmax) circle (.5pt) node[right, xshift=2pt] {};
+
+              \draw[blue, fill=blue] (bmin) circle (.5pt) node[above, yshift=2pt] {\scriptsize $\color{blue} \ip{a_0, 1}$};
+
+              \draw[blue, fill=white] (bmax) circle (.5pt) node[above, yshift=2pt] {};
+
+              \draw[draw=gray!70!white, fill=gray!20!white] (00) circle (.5pt) node[left, yshift=-4pt] {$\color{gray!70!white} \mb 0$};
+
+              \draw[draw=green, fill=white] (01) circle (.5pt) node[left, yshift=4pt] {$\color{green}\ip{0,1}$};
+              \draw[red,fill=red] (10) circle (.5pt) node[right, yshift=-4pt] {$\color{red} \ip{1,0}$};
+              \draw[draw=green, fill=white] (11) circle (.5pt) node[right, yshift=4pt] {\scriptsize ${\color{green}\mb 1} = {\color{red} \ip{a_1, b_1}} = {\color{blue} \ip{a_1, 1}}$};
+
+            \end{tikzpicture}
+            \caption{\texttt{else}, ${\color{green} F} \cap
+              {\color{red} B} = {\color{blue} \bp{a_0, 1} \times
+                \set{1}}$}
+          \end{subfigure}
+          \caption{Yet more subcases}
+        \end{figure}
+        which are of the forms (1), (2), and (3), respectively.
+    \end{enumerate}
+    Since cases (a) -- (c) are exhaustive, This proves the claim.
+    (\emph{Phew\ldots finally!}
+
+    \begin{leftbar}
+      \color{red} Note: you can stop here if you're doing your
+      rewrite, as long as you just make a brief note about the
+      similarity of $\ms B_F$ to a basis for $\ms T_I$.
+    \end{leftbar}
+
+    \emph{Claim 2:} We can establish a natural bijection between $\ms
+    B_F$ and a basis $\ms B_I$ for $\ms T_I$, and extend this to a
+    function $f : F \bij I$ that respects the topologies $\ms T_F, \ms
+    T_I$.
+
+    \emph{Proof of Claim 2:} Let $\ms B_I$ be given by
+    \[
+      \ms B_I = \set{\varnothing} \cup \set[Big]{\pn{a,b} \subset
+        \pn{0,1}} \cup \set[Big]{\bp{a,b} \subset \pn{0,1}}.
+    \]
+    Observe that $\ms B_I$ is indeed a basis for $\ms
+    T_I$.\footnote{In particular, the rightmost term is the collection
+      of standard basis sets for $\ms T_I$, and the left two terms can
+      be obtained by closure under arbitrary union.} Thus, $f : \ms
+    B_I \bij \ms B_F$ defined by
+    \[
+      f(B_I) =
+      \begin{cases}
+        \varnothing & \text{if } B_I = \varnothing \\
+        B_I \times \set{1} & \text{otherwise }
+      \end{cases}
+    \]
+    is a bijection with inverse given by
+    \[
+      \hspace{6.5cm}f^{-1}(B_F) = \pi_x(B_F) \qquad \qquad
+      \text{(where $\pi_x$ is the canonical projection).}
+    \]
+    We want to show $\forall U_I\in \ms T_I$, $f(U_I) \in \ms T_F$,
+    and $\forall V_F \in \ms T_F$, $f^{-1}(V_F) \in \ms T_I$. Let $U_I
+    \in \ms T_I$ be arbitrary. Then since $\ms B_I$ is a basis, there
+    exists a collection of basis sets $\set{B_{I, \alpha}}_{\alpha \in
+      \lambda} \subset \ms B_I$ such that
+    \[
+      \bigcup_{\alpha \in \lambda} B_{I,\alpha} = U_I.
+    \]
+    Hence
+    \begin{align*}
+      f(U_I)
+      &= f\pn{
+        \bigcup_{\alpha \in \lambda} B_{I,\alpha} } & (\text{substituting for $U_I$})\\
+      &= \bigcup_{\alpha \in \lambda} f\pn{B_{I,\alpha}} & \text{(prop.\ of $\cup$)}
+    \end{align*}
+    For each $\alpha \in \lambda$, $f\pn{B_{I,\alpha}} \in \ms B_F$
+    (by definition of $f$). Hence, $\set{B_{F,\alpha}}_{\alpha \in
+      \lambda}$ defined by
+    \[
+      B_{F,\alpha} = f\pn{B_{I,\alpha}} \qquad (\alpha \in \lambda)
+    \]
+    is a subset of $\ms B_F$. It follows that
+    \[
+      f(U_I) = \bigcup_{\alpha \in \lambda} B_{F,\alpha}
+    \]
+    is open in $(F, \ms T_F)$. The proof for arbitrary $V_F \in \ms
+    T_F$ follows analogously.
+
+    Hence, $f$ respects the topologies on $F,I$, so we have
+    \[
+      (F, \ms T_F) \cong (I, \ms T_I)
+    \]
+    as desired.
+  \end{solution}
+  \clearpage
+
+% --------------------------- Problem 2 ---------------------------- %
+
+  \begin{problem}[4.41]
+    Let $\RR^\omega$ be the countable product of copies of $\RR$. So
+    every point in $\RR^\omega$ is a sequence $x_1, x_2, x_3, \ldots$.
+    Let $A \subset \RR^\omega$ be the set consisting of all points
+    with only positive coordinates. Show that in the product topology,
+    $\Oo = \pn{0,0,0,\ldots}$ is a limit point of the set $A$, and
+    there is a sequence of points in $A$ converging to $\Oo$. Then
+    show that in the box topology, $\Oo = \pn{0,0,0,\ldots}$ is a
+    limit point of the set $A$, but there is no sequence of points in
+    $A$ converging to $\Oo$.
+  \end{problem}
+  \begin{why}
+    \begin{leftbar}
+      \textbf{Notational Note:} Let $A$ be a subset of a topological
+      space. Then we will use $\ms L(A)$ to denote the limit points of
+      $A$.
+    \end{leftbar}
+  \end{why}
+  \begin{solution}
+    Let $\ms \tprod$ be the product topology, and let $\ms \tbox$ be
+    the box topology. Denote their corresponding bases by $\bprod,
+    \bbox$. We first show that in either topology, $\Oo \in \ms L(A)$,
+    and then show the results about sequences.
+    \begin{enumerate}[label=(\arabic*)]
+      \item The following proof works in both $\tprod$ and
+        $\tbox$.\footnote{This is because $\tbox$ is \emph{finer} than
+          $\tprod$, and the proof works in $\tbox$.} Hence, let
+        $\tstar$ refer to either one of them, and let $\bstar$ the
+        corresponding basis.\footnote{Formally, ``let $\tstar \in
+          \set{\tprod, \tbox}$ be arbitrary'' --- but this level of
+          formality might distract the reader more than it helps, so I
+          omit it.}
+
+        Let $U \in \tstar$ such that $\Oo \in U$. Then since $\bstar$
+        is a basis, there exists $\set{B_\alpha}_{\alpha \in \lambda}
+        \subset \bstar$ such that
+        \[
+          U = \bigcup_{\alpha \in \lambda} B_\alpha.
+        \]
+        Observe that $\Oo \in U$ implies there exists $\alpha_0 \in
+        \lambda$ such that $\Oo \in B_{\alpha_0}$. By definition of
+        $\ms B_\star$, there exists $\set{U_i}_{i \in \NN} \subset \ms
+        T_{\rm std}$ such that
+        \[
+          B_{\alpha_0} = \prod_{i \in \NN} U_i.
+        \]
+        And so $\Oo \in B_{\alpha_0}$ implies $0 \in U_i$ for each
+        $i$. Finally, by definition of $\ms T_{\rm std}$, there exists
+        $\set{(a_i, b_i)}_{i \in \NN}$ such that
+    \end{enumerate}
+  \end{solution}
+  \clearpage
+
+% --------------------------- Problem 3 ---------------------------- %
+  \begin{problem}[5.1]
+    A space $(X, \ms T)$ is $T_1$ if and only if every point in $X$ is
+    a closed set.
+  \end{problem}
+  \begin{solution}
+
+  \end{solution}
+  \clearpage
+
+% --------------------------- Problem 4 ---------------------------- %
+  \begin{problem}[5.5]
+    Show that $\RR_{\rm LL}$ is normal.
+  \end{problem}
+  \begin{solution}
+
+  \end{solution}
+  \clearpage
+
+% --------------------------- Problem 5 ---------------------------- %
+  \begin{problem}[5.9]
+    A topological space $X$ is normal if and only if for each closed
+    set $A$ in $X$ and open set $U$ containing $A$ there exists an
+    open set $V$ such that $A \subset V$, and $\ol V \subset U$.
+  \end{problem}
+  \begin{solution}
+
+  \end{solution}
+
+\end{document}
