@@ -706,42 +706,60 @@
   \end{problem}
   \begin{why}
     \begin{leftbar}
+      \textbf{General Note:} In this problem, we pick an arbitrary $U
+      \in \ms T$. Lots of people assumed that $U$ needs to be of the
+      form
+      \[
+        \prod_{i \in \NN} U_i
+      \]
+      where for each $i$, either $U_i = (a_i, b_i)$ or $U_i = \RR$.
+      This isn't how the box/product topologies were defined (we only
+      know $U_i \in \ms T_{\rm std}$, not $U_i \in \ms B_{\rm std}$).
+      However, I didn't take off points for this assumption, since
+      this case captures the essential ideas of the proof.
+    \end{leftbar}
+    \begin{leftbar}
       \textbf{Notational Note:} Let $A$ be a subset of a topological
       space. Then we will use $\ms L(A)$ to denote the limit points of
       $A$.
     \end{leftbar}
   \end{why}
   \begin{solution}
-    Let $\ms \tprod$ be the product topology, and let $\ms \tbox$ be
-    the box topology. Denote their corresponding bases by $\bprod,
-    \bbox$. We first show that in either topology, $\Oo \in \ms L(A)$,
-    and then show the results about sequences.
+    Let $\ms \tprod, \ms \tbox$ be the product and box topologies on
+    $\RR^\omega$, respectively. Denote their corresponding bases by
+    $\bprod, \bbox$. We first show that in either topology $\Oo \in
+    \ms L(A)$, and then show the results about sequences.
     \begin{enumerate}[label=(\arabic*)]
-      \item The following proof works in both $\tprod$ and
-        $\tbox$.\footnote{This is because $\tbox$ is \emph{finer} than
-          $\tprod$, and the proof works in $\tbox$.} Hence, let
-        $\tstar$ refer to either one of them, and let $\bstar$ the
-        corresponding basis.\footnote{Formally, ``let $\tstar \in
-          \set{\tprod, \tbox}$ be arbitrary'' --- but this level of
-          formality might distract the reader more than it helps, so I
-          omit it.}
+      \item WTS $\Oo \in \ms L(A)$. The following proof works in both
+        $\tprod$ and $\tbox$.\footnote{This is because $\tbox$ is
+          \emph{finer} than $\tprod$, and the proof works in $\tbox$.}
+        Hence, let $\tstar$ refer to either one of them, and let
+        $\bstar$ be the corresponding basis.\footnote{Formally, ``let
+          $\tstar \in \set{\tprod, \tbox}$ be arbitrary'' --- but this
+          level of formality might distract the reader more than it
+          helps, so I omit it.} We proceed by definition of a limit
+        point.
 
-        Let $U \in \tstar$ such that $\Oo \in U$. Then since $\bstar$
-        is a basis, there exists $\set{B_\alpha}_{\alpha \in \lambda}
-        \subset \bstar$ such that
+        Let $U \in \tstar$ such that $\Oo \in U$. Then there exists $B
+        \in \bstar$ such that $B \subset U$, and $\Oo \in B$. By
+        definition of $\ms B_\star$, $B$ has the form
         \[
-          U = \bigcup_{\alpha \in \lambda} B_\alpha.
+          B = \prod_{i \in \NN} V_i.
         \]
-        Observe that $\Oo \in U$ implies there exists $\alpha_0 \in
-        \lambda$ such that $\Oo \in B_{\alpha_0}$. By definition of
-        $\ms B_\star$, there exists $\set{U_i}_{i \in \NN} \subset \ms
-        T_{\rm std}$ such that
+        where each $V_i$ is open in $\RR_{\rm std}$.\footnote{In the
+          product topology, we require all but finitely many of the
+          $V_i$ to be copies of $\RR$. But note, $\RR$ is open in
+          $\RR_{\rm std}$, so we lose no generality in this
+          statement.}
+        $\Oo \in B$ implies $0 \in V_i$ for each $i$, so there exists
+        $(a_i, b_i) \subset \RR$ with $0 \in (a_i,b_i) \subset \RR$.
+        Hence taking
         \[
-          B_{\alpha_0} = \prod_{i \in \NN} U_i.
+          \Aa = \pn{\frac{b_1}{2}, \frac{b_2}{2}, \ldots,
+            \frac{b_i}{2}, \ldots}
         \]
-        And so $\Oo \in B_{\alpha_0}$ implies $0 \in U_i$ for each
-        $i$. Finally, by definition of $\ms T_{\rm std}$, there exists
-        $\set{(a_i, b_i)}_{i \in \NN}$ such that
+        we see that $\Aa \in B$.
+      \item
     \end{enumerate}
   \end{solution}
   \clearpage
