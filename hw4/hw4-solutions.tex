@@ -621,7 +621,7 @@
         which are of the forms (1), (2), and (3), respectively.
     \end{enumerate}
     Since cases (a) -- (c) are exhaustive, This proves the claim.
-    (\emph{Phew\ldots finally!}
+    (\emph{Phew\ldots finally!})
 
     \begin{leftbar}
       \color{red} Note: you can stop here if you're doing your
@@ -860,12 +860,14 @@
         &= \set[Big]{x \in \RR \MID \max\set{a,b} \leq x < \min\set{y_a, y_b}} \\
         &= \bp[Big]{\max\set{a,b},\ \min\set{y_a, y_b}}.
       \end{align*}
-      Importantly, notice $\max \set{a,b} \in U \cap V$. We use this
-      below.
+      Importantly, notice $\max \set{a,b}$ is an element of both
+      $\bp{a, y_a}$ and $\bp{b, y_b}$! Since $\bp{a, y_a} \subset \RR
+      - B$ and $\bp{b, y_b} \subset \RR - A$, this will get us our
+      contradiction.
     \end{leftbar}
     WLOG, suppose $a < b$. Then $b \in \bp{a, y_a} \subset \RR - B$, a
-    contradiction ($b \not\in \RR - B$). Thus $U \cap V =
-    \varnothing$, and this proves the claim. \cmark
+    contradiction {\color{red} $(b \not\in \RR - B)$}. Thus $U \cap V
+    = \varnothing$, and this proves the claim. \cmark
 
     Since $A,B$ were arbitrarily chosen, it follows that $\RRLL$ is
     normal.
@@ -879,7 +881,51 @@
     open set $V$ such that $A \subset V$, and $\ol V \subset U$.
   \end{problem}
   \begin{solution}
+    \begin{iffproof}
+      \item Suppose $X$ is normal. Let $A$ be an arbitrary closed set,
+        and let $U \in \ms T$ such that $A \subset U$. Since $U$ is
+        open, $X-U$ is closed.
 
+        Note that $A \subset U$ implies $A\cap (X-U) = \varnothing$.
+        Since $X$ is normal, there exist disjoint open sets $V,W$ such
+        that $A \subset V$ and $(X - U) \subset W$.
+
+        Since $V,W$ are disjoint, we have $V \subset X - W$.
+        Furthermore, $W$ is open implies $X - W$ is closed. Thus
+        \begin{equation}\label{eq:V closure in X-W}
+          \ol{V} \subset \ol{X-W} = X-W.
+        \end{equation}
+        Now, note $(X - U) \subset W$ implies $(X - W) \subset U$.
+        Thus, combining with (\ref{eq:V closure in X-W}), we see
+        \[
+          A \subset V \subset \ol{V} \subset U
+        \]
+        as desired.
+      \item Suppose that for each $A \in \ms C$ and $U \in \ms T$ such
+        that $A \subset U$, there exists $V \in \ms T$ such that $A
+        \subset V$ and $\ol{V} \subset U$.
+
+        Let $A,B$ be arbitrary disjoint closed sets. Then $A \subset X
+        - B$, and $X-B$ is open. Thus by hypothesis, there exists open
+        $U$ such that
+        \[
+          A \subset U \subset \ol{U} \subset X-B.
+        \]
+        Note that $X - \ol{U}$ is open, and
+        \[
+          B \subset X - \ol{U}.\footnote{In general, for sets $C,D$,
+            $C \subset D$ implies $D^c \subset C^c$. Here, we've taken
+            $C = \ol{U}$ and $D = X-B$.}
+        \]
+        Then by hypothesis, there exists open $V$ such that
+        \[
+          B \subset V \subset \ol{V} \subset X-\ol{U}
+        \]
+        hence $\ol{U}, \ol{V}$ are disjoint, so $U,V$ are disjoint as
+        well. In the interests of being explicit, note that $A \subset
+        U$ and $B \subset V$. Then since $A,B$ were chosen
+        arbitrarily, $X$ is normal, as desired.
+    \end{iffproof}
   \end{solution}
 
 \end{document}
