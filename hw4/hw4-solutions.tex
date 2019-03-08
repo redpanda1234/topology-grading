@@ -23,8 +23,9 @@
 \newcommand{\bbox}{\ensuremath \ms B_{\rm box}}
 \newcommand{\tstar}{\ensuremath \ms T_{\star}}
 \newcommand{\bstar}{\ensuremath \ms B_{\star}}
-
-\renewcommand{\qed}{\hspace{.85\textwidth} $\blacksquare$}
+\newcommand{\tstd}{\ensuremath \ms T_{\rm std}}
+\newcommand{\bstd}{\ensuremath \ms B_{\rm std}}
+\newcommand{\bll}{\ensuremath \ms B_{\rm LL}}
 
 \newenvironment{why}{\begin{adjustwidth}{0.01\linewidth}{0.05\linewidth}~}%
   {\end{adjustwidth}}
@@ -168,8 +169,6 @@
                 \draw[gray!70!white, fill=gray!20!white] (10) circle (.5pt) node[right, yshift=-4pt] {$\color{gray!70!white} \ip{1,0}$};
                 \draw[draw=green, fill=white] (11) circle (.5pt) node[right, yshift=4pt] {$\color{green}\mb 1$};
 
-                \draw[red, fill=white] (0,.6) circle (.5pt) node[left, xshift=-6pt] {$\color{red} \ip{a_1, b_1}$};
-
 
                 \draw [
                   red,
@@ -201,6 +200,8 @@
                   xshift=0pt,
                   yshift=1pt
                 ] (0.025,1) -- (.975,1) node [green, midway, yshift=0.4cm] {\footnotesize $F$};
+
+                \draw[red, fill=white] (0,.6) circle (.5pt) node[left, xshift=-6pt] {$\color{red} \ip{a_1, b_1}$};
               \end{tikzpicture}
               \caption{${\color{green}F} \cap {\color{red}B} = \color{blue}
                 \varnothing$.}
@@ -714,9 +715,9 @@
       \]
       where for each $i$, either $U_i = (a_i, b_i)$ or $U_i = \RR$.
       This isn't how the box/product topologies were defined (we only
-      know $U_i \in \ms T_{\rm std}$, not $U_i \in \ms B_{\rm std}$).
-      However, I didn't take off points for this assumption, since
-      this case captures the essential ideas of the proof.
+      know $U_i \in \ms \tstd$, not $U_i \in \ms \bstd$). However, I
+      didn't take off points for this assumption, since this case
+      captures the essential ideas of the proof.
     \end{leftbar}
     \begin{leftbar}
       \textbf{Notational Note:} Let $A$ be a subset of a topological
@@ -746,19 +747,19 @@
         \[
           B = \prod_{i \in \NN} V_i.
         \]
-        where each $V_i$ is open in $\RR_{\rm std}$.\footnote{In the
-          product topology, we require all but finitely many of the
-          $V_i$ to be copies of $\RR$. But note, $\RR$ is open in
-          $\RR_{\rm std}$, so we lose no generality in this
-          statement.}
-        $\Oo \in B$ implies $0 \in V_i$ for each $i$, so there exists
-        $(a_i, b_i) \subset \RR$ with $0 \in (a_i,b_i) \subset \RR$.
-        Hence taking
+        where for each $i$, $V_i$ is open in $\RR_{\rm std}$.%
+        \footnote{In the product topology, we require all but
+          finitely many of the $V_i$ to be copies of $\RR$. But note,
+          $\RR$ is open in $\RR_{\rm std}$, so we lose no generality
+          in this statement.} Since $\Oo \in B$, for each $i$, exists
+        $(a_i, b_i) \subset \RR$ with $0 \in (a_i,b_i) \subset V_i$.
+        Thus, taking
         \[
           \Aa = \pn{\frac{b_1}{2}, \frac{b_2}{2}, \ldots,
             \frac{b_i}{2}, \ldots}
         \]
-        we see that $\Aa \in B$.
+        we see that $\Aa \in B$, and $\Aa \in A$.
+      \item
       \item
     \end{enumerate}
   \end{solution}
@@ -769,8 +770,32 @@
     A space $(X, \ms T)$ is $T_1$ if and only if every point in $X$ is
     a closed set.
   \end{problem}
+  \begin{why}
+    \begin{leftbar}
+      \textbf{General note:} This proof \emph{can} be done by limit
+      points. The resulting proof is almost exactly as long. However,
+      I prefer the proof below, since it's constructive.
+    \end{leftbar}
+  \end{why}
   \begin{solution}
-
+    \begin{iffproof}
+      \item Suppose $X$ is $T_1$. Let $x \in X$ be arbitrary. $X$ is
+        $T_1$ implies for all $y \in X - \set{x}$, there exists $U_y
+        \in \ms T$ such that $x \not \in U_y$.\footnote{We're
+          implicitly using the fact that $y \neq x \iff y \in X -
+          \set{x}$ here.} Hence
+        \[
+          X - \set{x} = \bigcup_{\mathclap{y \in X - \set{x}}} U_y,
+        \]
+        is a union of open sets, so $X - \set{x}$ open, and thus
+        $\set{x}$ is closed. Since $x$ was arbitrarily chosen, it
+        follows that every point is a closed set (as desired).
+      \item Suppose that every $\set{p} \subset X$ is closed. Let $x,y
+        \in X$ such that $x \neq y$. $\set{x}, \set{y}$ are closed
+        implies $X - \set{x}$ and $X - \set{y}$ are open. Observe that
+        $y \in X - \set{x}$ and $x \in X - \set{y}$, but $x \not \in X
+        - \set{x}$ and $y \not \in X - \set{y}$. Thus $X$ is $T_1$.
+    \end{iffproof}
   \end{solution}
   \clearpage
 
@@ -779,7 +804,71 @@
     Show that $\RR_{\rm LL}$ is normal.
   \end{problem}
   \begin{solution}
+    Let $\bll$ denote the usual basis for $\RRLL$, and let $A,B$ be
+    arbitrary disjoint closed sets.
 
+    Let $a \in A$ be arbitrary. Since $A \cap B = \varnothing$, $a \in
+    \RR - B$. Observe that $\RR - B$ is open ($B$ is closed), thus
+    there exists $\bp{x_a, y_a} \in \bll$ such that $a \in \bp{x_a,
+      y_a} \subset \RR - B$. Then
+    \[
+      \bp{a, y_a} \subset \bp{x_a, y_a} \subset \RR - B
+    \]
+    as well. Define $U$ by
+    \[
+      U = \bigcup_{a \in A} \bp{a, y_a},
+    \]
+    and observe $U$ is open, with $A \subset U$. By analogous
+    reasoning, define
+    \[
+      V = \bigcup_{b \in B} \bp{b, y_b}
+    \]
+    and observe $V$ is open, with $B \subset V$.
+
+    \emph{Claim:} $U \cap V = \varnothing$.
+
+    \emph{Proof of Claim:} Suppose, to obtain a contradiction, that $U
+    \cap V \neq \varnothing$.
+    \begin{leftbar}
+      {\color{red}Note: This step in the leftbar is optional; you can
+        skip it in your writeup. I've just included it for
+        completeness.}
+
+      Then
+      \begin{align*}
+        U \cap V
+        &=
+        \pn{\bigcup_{a\in A} \bp{a,y_a}} \cap \pn{\bigcup_{b \in B} \bp{b, y_b}} \\
+        &= \bigcup_{\substack{a \in A \\ b \in B}}  \bp{a, y_a} \cap \bp{b, y_b} \tag{$\star$} \\
+        &\neq \varnothing
+      \end{align*}
+      where $(\star)$ follows by the distributive laws.
+    \end{leftbar}
+    Then $\exists a \in A, b \in B$ such that $\bp{a,y_a} \cap \bp{b,
+      y_b} \neq \varnothing$.
+    \begin{leftbar}
+      {\color{red} Note: This step should \emph{definitely} not be
+        included in your writeup; it's far too much detail. I'm just
+        including it here to be very explicit so that you can see
+        every step if that's helpful \texttt{:)}}
+
+      Note that
+      \begin{align*}
+        \bp{a,y_a} \cap \bp{b, y_b}
+        &= \set[Big]{x \in \RR \MID a \leq x < y_a} \cap \set[Big]{x \in \RR \MID b \leq x < y_b} \\
+        &= \set[Big]{x \in \RR \MID (a \leq x, b \leq x) \text{ and } (x < y_a, x < y_b) } \\
+        &= \set[Big]{x \in \RR \MID \max\set{a,b} \leq x < \min\set{y_a, y_b}} \\
+        &= \bp[Big]{\max\set{a,b},\ \min\set{y_a, y_b}}.
+      \end{align*}
+      Importantly, notice $\max \set{a,b} \in U \cap V$. We use this
+      below.
+    \end{leftbar}
+    WLOG, suppose $a < b$. Then $b \in \bp{a, y_a} \subset \RR - B$, a
+    contradiction ($b \not\in \RR - B$). Thus $U \cap V =
+    \varnothing$, and this proves the claim. \cmark
+
+    Since $A,B$ were arbitrarily chosen, it follows that $\RRLL$ is
+    normal.
   \end{solution}
   \clearpage
 
