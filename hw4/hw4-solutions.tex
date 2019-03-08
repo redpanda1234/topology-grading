@@ -750,16 +750,52 @@
         where for each $i$, $V_i$ is open in $\RR_{\rm std}$.%
         \footnote{In the product topology, we require all but
           finitely many of the $V_i$ to be copies of $\RR$. But note,
-          $\RR$ is open in $\RR_{\rm std}$, so we lose no generality
-          in this statement.} Since $\Oo \in B$, for each $i$, exists
-        $(a_i, b_i) \subset \RR$ with $0 \in (a_i,b_i) \subset V_i$.
-        Thus, taking
+          $\RR$ is open in $\RR_{\rm std}$, so this statement actually
+          \emph{includes} the case that we're working in the product
+          topology.} $\Oo \in B$ implies that for each $i$, $0 \in
+        V_i$, and thus there exists $(a_i, b_i) \subset \RR$ with $0
+        \in (a_i,b_i) \subset V_i$. Taking
         \[
           \Aa = \pn{\frac{b_1}{2}, \frac{b_2}{2}, \ldots,
             \frac{b_i}{2}, \ldots}
         \]
-        we see that $\Aa \in B$, and $\Aa \in A$.
-      \item
+        we see that $\Aa \in B$ (and thus $\Aa \in U$), and $\Aa \in
+        A$. Since $\Aa\neq \Oo$, we thus have
+        \[
+          (U - \set{\Oo}) \cap A \neq \varnothing,
+        \]
+        so $\Oo \in \ms L(A)$, as desired. \cmark
+      \item We want to show that under $\tprod$, there exists
+        $\set{x_n}_{n \in \NN}$ with $x_n \to \Oo$.
+
+        \textbf{Claim:} $\set{x_n}_{n \in\NN}$ defined by
+        \[
+          x_n = \pn{\frac{1}{n}, \frac{1}{n}, \ldots}
+        \]
+        works.
+
+        \textbf{Proof of Claim:} WTS $x_n \to \Oo$. Let $U \in \tprod$
+        such that $\Oo \in U$. Then
+        \[
+          U = \prod_{i \in \NN} V_i
+        \]
+        where each $V_i$ is open, and for all but finitely many $i$,
+        $V_i = \RR$. Let $J \subset \NN$ index the $V_i$ for which
+        $V_i \neq \RR$.
+
+        $\Oo \in U$ implies that for each $j \in J$, $0 \in V_j$, and
+        hence there exists $(a_j, b_j)$ such that $0 \in (a_j, b_j)
+        \subset V_j$. Since $J$ is finite,
+        \[
+          \min_{j \in J} \set{b_j} > 0,
+        \]
+        so $\exists N \in \NN$ with
+        \[
+          \frac{1}{N} < \min_{j \in J}\set{b_j}.
+        \]
+        Thus, for all $n > N$ we see $\frac{1}{n} \in V_i$ for each
+        $i$, and hence $x_n \in U$. Since $U$ was arbitrarily chosen,
+        it follows that $x_n \to \Oo$.
       \item
     \end{enumerate}
   \end{solution}
