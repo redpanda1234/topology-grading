@@ -796,7 +796,26 @@
         Thus, for all $n > N$ we see $\frac{1}{n} \in V_i$ for each
         $i$, and hence $x_n \in U$. Since $U$ was arbitrarily chosen,
         it follows that $x_n \to \Oo$.
-      \item
+      \item We want to show that under $\tbox$, there exists no
+        $\set{x_i}_{i \in \NN}$ with $x_i \to \Oo$.
+
+        Suppose, to obtain a contradiction, that such a sequence
+        exists. Let the term $x_i$ be given by
+        \[
+          x_i = \pn{b_{i}^{(1)}, b_{i}^{(2)}, \ldots}
+        \]
+        Then consider $U$ defined by
+        \[
+          U = \prod_{i \in \NN} \pn{-b_{i}^{(i)}, b_{i}^{(i)}}.
+        \]
+        Since $x_i \to \Oo$, $\exists N \in \NN$ st for all $n > N$,
+        $x_n \in U$. But note,
+        \[
+          b_{n}^{(n)} \not \in \pn{-b_{n}^{(n)}, b_{n}^{(n)}}
+        \]
+        hence $x_n \not \in U$, a contradiction.
+
+        Thus no such sequence exists.
     \end{enumerate}
   \end{solution}
   \clearpage
