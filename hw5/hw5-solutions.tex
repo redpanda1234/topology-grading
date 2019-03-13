@@ -1,0 +1,134 @@
+\documentclass{fkpset}
+
+% \newgeometry{bmargin=1in, tmargin=1.25in, lmargin=.75in, rmargin=.75in}
+% \fancyhfoffset[R]{.05cm}
+
+\name{Forest Kobayashi}
+\class{Math 147}
+\duedate{03/13/2019}
+\assignment{HW 5 Solutions}
+
+\chead{HW 5 Solutions}
+\rhead{Math 147 -- Spring, 2019}
+
+\lfoot{Wednesday, March 13th 2019}
+
+\renewcommand{\thesubfigure}{\roman{subfigure}}
+\newcommand{\tstd}{\ensuremath \ms T_{\rm std}}
+\let\lunateepsilon\epsilon
+\renewcommand{\epsilon}{\varepsilon}
+\newenvironment{why}{\begin{adjustwidth}{0.01\linewidth}{0.05\linewidth}~}%
+  {\end{adjustwidth}}
+
+\begin{document}
+\pagestyle{plain}
+\pagestyle{fancy}
+  \vspace{-2.9cm}
+  \begin{table}[H]
+    \centering
+    \begin{tabular}{@{}lcccccr@{}}\toprule
+      Problems & 5.6(4) & 5.11 & 5.15(no normal) & 5.17 & 5.23 & Total \\ \midrule
+      Points   &        &      &                 &      &      &       \\ \bottomrule
+    \end{tabular}
+  \end{table}
+  \vspace{1cm}
+
+% --------------------------- Problem 1 ---------------------------- %
+  \begin{problem}[5.6(4)]
+    Show that $\RR^2$ with the standard topology is normal.
+  \end{problem}
+  \begin{solution}
+    First, we introduce some notation.
+    \begin{leftbar}
+      \textbf{Notational Note:} Let $(X, \ms T)$ be a topological
+      space. Let $x \in X$, and let $Y \subset X$. Then define
+      \[
+        d(x, Y) = \inf_{y \in Y} d(x,y)
+      \]
+      now the main proof.
+    \end{leftbar}
+
+    \emph{Main Proof:} Let $A,B$ be disjoint closed subsets of
+    $\RR^2$. For each $a\in A$, $b\in B$, let
+    \begin{align*}
+      \epsilon_a &= \frac{d(a,B)}{3} & \epsilon_b &= \frac{d(b,A)}{3}
+    \end{align*}
+    and note that by part (1), $\epsilon_a, \epsilon_b > 0$. Define
+    \begin{align*}
+      U &= \bigcup_{a \in A} B_{\epsilon_a}(a) & V &= \bigcup_{b \in B} B_{\epsilon_b}(b)
+    \end{align*}
+    and observe $U, V \in \tstd$, with $A \subset U$ and $B \subset
+    V$.
+
+    Suppose, to obtain a contradiction, that $U \cap V \neq
+    \varnothing$. Let $x \in U \cap V$. Then there exist $a \in A$, $b
+    \in B$ such that $x \in B_{\epsilon_a}(a) \cap B_{\epsilon_b}(b)$.
+    It follows that
+    \begin{align*}
+      d(a,b)
+      &\leq d(a,x) + d(x,b) \\
+      &\leq \epsilon_a + \epsilon_b
+    \end{align*}
+    WLOG, suppose $\epsilon_b \leq \epsilon_a$. Then
+    \begin{align*}
+      d(a,b)
+      &\leq 2\epsilon_a \\
+      &= \frac{2}{3} d(a,B)
+    \end{align*}
+    a contradiction. Hence $U \cap V = \varnothing$, so $\RR^2$ is
+    normal, as desired.
+    \begin{leftbar}
+      \color{red} \textbf{Clarifying Note:} Why is this a
+      contradiction? Because
+      \begin{align*}
+        d(a,B) = \inf_{b \in B} d(a,b)
+      \end{align*}
+      hence for all $b' \in B$, $d(a,B) \leq d(a,b')$. Thus our result
+      would imply
+      \[
+        d(a,b) \leq \frac{2}{3} d(a,b),
+      \]
+      which holds iff $d(a,b) = 0$, a contradiction.
+    \end{leftbar}
+  \end{solution}
+  \clearpage
+
+% --------------------------- Problem 2 ---------------------------- %
+
+  \begin{problem}[5.11 (The Incredible Shrinking Theorem)]
+    A topological space $X$ is normal if and only if for each pair of
+    open sets $U,V$ such that $U \cup V = X$, there exist open sets
+    $U', V'$ such that $\ol{U'} \subset U$ and $\ol{V'} \subset V$,
+    and $U' \cup V' = X$.
+  \end{problem}
+  \begin{solution}
+  \end{solution}
+  \clearpage
+
+% --------------------------- Problem 3 ---------------------------- %
+  \begin{problem}[5.15]
+    A space $(X, \ms T)$ is $T_1$ if and only if every point in $X$ is
+    a closed set.
+  \end{problem}
+  \begin{solution}
+    Order topologies are $T_1$, Hausdorff, and regular.
+  \end{solution}
+  \clearpage
+
+% --------------------------- Problem 4 ---------------------------- %
+  \begin{problem}[5.17]
+    Let $X$ and $Y$ be regular. Then $X \times Y$ is regular.
+  \end{problem}
+  \begin{solution}
+  \end{solution}
+  \clearpage
+
+% --------------------------- Problem 5 ---------------------------- %
+  \begin{problem}[5.23]
+    Let $A$ be a closed subset of a normal space $X$. Then $A$ is
+    normal when given the relative topology.
+  \end{problem}
+  \begin{solution}
+  \end{solution}
+
+\end{document}
