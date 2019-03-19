@@ -43,9 +43,8 @@
       \textbf{Notational Note:} Let $(X, \ms T)$ be a topological
       space. Let $x \in X$, and let $Y \subset X$. Then define
       \[
-        d(x, Y) = \inf_{y \in Y} d(x,y)
+        d(x, Y) = \inf_{y \in Y} d(x,y).
       \]
-      now the main proof.
     \end{leftbar}
 
     \emph{Main Proof:} Let $A,B$ be disjoint closed subsets of
@@ -58,7 +57,7 @@
       U &= \bigcup_{a \in A} B_{\epsilon_a}(a) & V &= \bigcup_{b \in B} B_{\epsilon_b}(b)
     \end{align*}
     and observe $U, V \in \tstd$, with $A \subset U$ and $B \subset
-    V$.
+    V$. We want to show $U \cap V = \varnothing$.
 
     Suppose, to obtain a contradiction, that $U \cap V \neq
     \varnothing$. Let $x \in U \cap V$. Then there exist $a \in A$, $b
@@ -66,29 +65,35 @@
     It follows that
     \begin{align*}
       d(a,b)
-      &\leq d(a,x) + d(x,b) \\
+      &\leq d(a,x) + d(x,b) \tag{$\star$}\\
       &\leq \epsilon_a + \epsilon_b
     \end{align*}
     WLOG, suppose $\epsilon_b \leq \epsilon_a$. Then
     \begin{align*}
       d(a,b)
       &\leq 2\epsilon_a \\
-      &= \frac{2}{3} d(a,B)
+      &= \frac{2}{3} d(a,B)  \\
+      &< d(a,b)
     \end{align*}
-    a contradiction. Hence $U \cap V = \varnothing$, so $\RR^2$ is
+    a contradiction.\footnote{Note, here our contradiction is $d(a,b)
+      < d(a,b)$. But we could also just skip ($\star$), and directly
+      contradict the triangle inequality by $d(a,x) + d(x,b) <
+      d(a,b)$. I prefer the former, just because it better matches
+      arguments seen in Analysis.} Hence, $U \cap V = \varnothing$, so
+    $U,V$ are disjoint open sets containing $A$ and $B$ respectively.
+    Since $A,B$ were arbitrarily chosen, it follows that $\RR^2$ is
     normal, as desired.
     \begin{leftbar}
-      \color{red} \textbf{Clarifying Note:} Why is this a
-      contradiction? Because
-      \begin{align*}
-        d(a,B) = \inf_{b \in B} d(a,b)
-      \end{align*}
-      hence for all $b' \in B$, $d(a,B) \leq d(a,b')$. Thus our result
-      would imply
+      \color{red} \textbf{Clarifying Note:} How did we get the final
+      inequality? Well, note that
       \[
-        d(a,b) \leq \frac{2}{3} d(a,b),
+        d(a,B) = \inf_{b \in B} d(a,b)
       \]
-      which holds iff $d(a,b) = 0$, a contradiction.
+      hence for all $b' \in B$, $d(a,B) \leq d(a,b')$. Since $d(a,B) >
+      0$, it follows that for all $b' \in B$,
+      \[
+        \frac{2}{3}d(a,B) < d(a,b').
+      \]
     \end{leftbar}
   \end{solution}
   \clearpage
@@ -102,16 +107,214 @@
     and $U' \cup V' = X$.
   \end{problem}
   \begin{solution}
+    First, we prove a lemma.\footnote{I'm just proving it as a lemma
+      so that I can offer two proofs. In an actual writeup, I'd just
+      use one of them.} The $(\implies)$ direction will follow as a
+    corollary.
+    \begin{leftbar}\setcounter{section}{2}\vspace{-.25cm}
+      % Man, I really ought to fix lemmas inside leftbars sometime
+      \begin{lemma}
+        Let $(X, \ms T)$ be normal. Let $U,V \in \ms T$ such that $U
+        \cup V = X$. Then there exists $U' \in \ms T$ such that
+        $\ol{U'} \subset U$, and $U' \cup V = X$.
+      \end{lemma}
+
+      I'll provide two proofs. The first uses theorem 5.9 (and is
+      hence \emph{much} cleaner), while the second uses the definition
+      of normality (and is hence much longer / more involed). I
+      included both, so that people who tried to use normality could
+      see how to proceed.
+
+      \begin{adjustwidth}{.025\linewidth}{.025\linewidth}
+        \color{RedOrange}
+        \begin{boxedminipage}{\linewidth}
+          \emph{Proof 1:} Note that $V^c$ is closed, and $V^c \subset
+          U$. Then by theorem 5.9, there exists $U' \in \ms T$ such
+          that
+          \[
+            V^c \subset U' \subset \ol{U'} \subset U.
+          \]
+          Note that $V^c \subset U' \implies U' \cup V = X$. Hence, we
+          have our desired $U'$. \hfill $\square$
+        \end{boxedminipage}
+      \end{adjustwidth}
+      ~
+      \begin{adjustwidth}{.025\linewidth}{.025\linewidth}
+        \color{TealBlue}
+        \begin{boxedminipage}{\linewidth}
+          \emph{Proof 2:} $U,V \in \ms T$ implies $U^c$ and $V^c$ are
+          closed. Observe that
+          \begin{align*}
+            U^c \cap V^c
+            &= (U \cup V)^c \\
+            &= \varnothing,
+          \end{align*}
+          hence $U^c, V^c$ are disjoint closed sets. Then by
+          definition of normality, there exist disjoint open sets
+          $U',V'$ such that
+          \[
+            U^c \subset V' \qquad\quad \text{and} \quad\qquad V^c
+            \subset U'.
+          \]
+          Note that $V^c \subset U' \implies U' \cup V = X$. It
+          remains to show $\ol{U'} \subset U$. Since $U' \cap V' =
+          \varnothing$ and $U^c \subset V'$, we have
+          \[
+            U' \subset V'^c \subset U
+          \]
+          and because $V'^c$ is closed, $\ol{U'} \subset V'^c$ as
+          well. This proves the claim. \hfill $\square$
+        \end{boxedminipage}
+      \end{adjustwidth}
+      Now, the main proof.
+    \end{leftbar}
+
+    \begin{iffproof}
+    \item Suppose $X$ is normal.
+
+        Let $U,V \in \ms T$ such that $U \cup V = X$. Then by the
+        lemma, there exists $U' \in \ms T$ such that $\ol{U'} \subset
+        U$, and $U' \cup V = X$. Now, applying the lemma to the pair
+        $(V, U')$, we obtain the desired $V'$. \cmark
+
+      \item Suppose that $\forall U,V \in \ms T \st U \cup V = X$,
+        there exists $U', V' \st \ol{U'} \subset U$, $\ol{V'} \subset
+        V$, and $U' \cup V' = X$. WTS $X$ is normal. We will apply
+        Theorem 5.9.
+
+        Let $A \subset X$ be an arbitrary closed set, and let $U \in
+        \ms T$ such that $A \subset U$.\footnote{At least one such $U$
+          exists, namely $X$, hence we can freely declare $U$ in this
+          manner.} Observe that $A^c$ is open, and $U^c \subset A^c$.
+        It follows that $X = U \cup A^c$. Then by hypothesis, there
+        exists $U',V' \in \ms T$ such that
+        \[
+          \ol{U'} \subset U \qquad \qquad \qquad \ol{V'} \subset A^c
+        \]
+        and $U' \cup V' = X$. Observe that this last condition implies
+        $(U')^c \subset V'$, hence we have
+        \[
+          (U')^c \subset V' \subset \ol{V'} \subset A^c
+        \]
+        Taking the complement and employing $U' \subset U$, we have
+        \[
+          A \subset (\ol{V'})^c \subset (V')^c \subset U' \subset U.
+        \]
+        Note that $(\ol{V'})^c$ is open, while $(V')^c$ is closed.
+        Then by Theorem 3.20,
+        \[
+          \ol{(\ol{V'})^c} \subset (V')^c
+        \]
+        hence
+        \[
+          A \subset (\ol{V'})^c \subset \ol{(\ol{V'})^c} \subset U.
+        \]
+        Since $A$ and $U$ were arbitrarily chosen, Theorem 5.9 implies
+        $X$ is normal.
+    \end{iffproof}
   \end{solution}
   \clearpage
 
 % --------------------------- Problem 3 ---------------------------- %
   \begin{problem}[5.15]
-    A space $(X, \ms T)$ is $T_1$ if and only if every point in $X$ is
-    a closed set.
+    Order topologies are $T_1$, Hausdorff, and regular.
   \end{problem}
   \begin{solution}
-    Order topologies are $T_1$, Hausdorff, and regular.
+    Let $X$ be a totally ordered set, and $\ms T$ be the associated
+    order topology. Denote the elements of the canonical basis as
+    follows:
+    \begin{itemize}
+      \item $(-\infty, a) = \set{x \in X \MID x < a}$
+      \item $(a, \infty) = \set{x \in X \MID a < x}$
+      \item $(a,b) = \set{x \in X \MID a < x < b}$.
+    \end{itemize}
+    Square brackets will indicate inclusivity, as usual.
+    \begin{note}
+      \color{red} Although the notation here is almost identical to
+      that of the standard topology on $\RR$, we need not have $X =
+      \RR$. In fact, $X$ is guaranteed to have \emph{no algebraic
+        structure} whatsoever. Be sure to keep this in mind as we
+      proceed!
+    \end{note}
+
+    \begin{enumerate}[label=(\arabic*)]
+      \item We apply Theorem 5.1. Let $x \in X$ be arbitrary. Then
+        $(-\infty, x) \cup (x, \infty)$ is open. By complement,
+        $\set{x}$ is closed, hence $(X,\ms T)$ is $T_1$.
+      \item WLOG, suppose $x < y$. We proceed by casework.
+        \begin{enumerate}[label=(\roman*)]
+          \item Suppose there exists $z \in X$ such that $x < z < y$.
+            Then $U = (-\infty, x)$, $V = (z, \infty)$ are disjoint
+            open sets with $x \in U$, $y \in V$.
+          \item Suppose no such $z$ exists. Then $U = (-\infty, y)$,
+            $V = (x, \infty)$ are disjoint open sets with $x \in U$,
+            $y \in V$.
+        \end{enumerate}
+        hence $(X, \ms T)$ is Hausdorff.
+        \begin{remark}
+          {\color{red} By Theorem 5.7.2, we actually just need to show
+          regularity now that we have $T_1$. But in case you'd like to
+          show Hausdorff constructively for extra practice, this is
+          one way you might do it.
+
+          Also, here's a graphic of tenuous worth to ``help''
+          illustrate subcase (ii):}
+          \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+              \fill[opacity=.2, blue, rounded corners=.75ex] (-1, -15pt) -- (5.9, -15pt) -- (5.9, -21pt) -- (-1, -21pt) -- cycle;
+              \fill[opacity=.2, red, rounded corners=.75ex] (1, 15pt) -- (-5.9, 15pt) -- (-5.9, 21pt) -- (1, 21pt) -- cycle;
+
+              \draw[latex-] (-6,0) -- (-1,0);
+              \draw[-latex] (1,0) -- (6,0);
+              \foreach \x in  {-5,-3,3,5}{
+                \draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+              }
+
+              \draw[shift={(-1,0)}, color=black] (0pt,3pt) -- (0pt,-3pt) node[below]
+              {\color{red} $x$};
+              \draw[shift={(1,0)}, color=black] (0pt,3pt) -- (0pt,-3pt) node[below]
+              {\color{blue} $y$};
+
+              \draw[{(-[}, dashed, thick, blue] (-1,-18pt) -- (1.075,-18pt);
+              \draw[{-latex}, thick, blue] (1,-18pt) -- (6,-18pt);
+              \draw[{(-[}, dashed, thick, red] (1,18pt) -- (-1.075,18pt);
+              \draw[{-latex}, thick, red] (-1,18pt) -- (-6,18pt);
+
+            \end{tikzpicture}
+            \caption{Subcase (ii)}
+          \end{figure}
+          {\color{red} Note the gap between $x$ and $y$. $U$ is the
+            top interval, $V$ is the bottom one.}
+        \end{remark}
+      \item To show regularity, we will employ Theorem 5.8. But first,
+        a small Lemma.
+        \begin{leftbar}
+          \begin{lemma}
+            Let $(a,b) \subset X$. Then $\ol{(a,b)} \subset \bk{a,b}$.
+          \end{lemma}
+          \emph{Proof:} Note that $X - \bk{a,b} = (-\infty, a) \cup
+          (b,\infty)$ is open, hence $[a,b]$ is closed. By Theorem
+          3.20, we have $\ol{(a,b)} \subset [a,b]$.
+        \end{leftbar}
+
+        Let $x \in X$ be arbitrary. Let $U \in \ms T$ such that $x \in
+        U$. Then there exists $\set{B_\alpha}_{\alpha \in \lambda}$
+        such that
+        \[
+          U = \bigcup_{\alpha \in \lambda} B_\alpha.
+        \]
+        Let $\alpha_0 \in \lambda \st x \in B_{\alpha_0}$. Then there
+        exists $a,b \in X\cup \set{-\infty, \infty}$ such that
+        \[
+          x \in (a,b) \subset B_{\alpha_0}.
+        \]
+        We now have four subcases.
+        \begin{enumerate}[label=\roman*)]
+          \item Suppose there exist no $a',b' \in (a,b)$ such that $x
+            \in (a', b') \subset (a,b)$. Then
+        \end{enumerate}
+    \end{enumerate}
   \end{solution}
   \clearpage
 
@@ -129,6 +332,30 @@
     normal when given the relative topology.
   \end{problem}
   \begin{solution}
+    Let $\ms T_X$ be the topology on $X$, and $\ms C_X$ be the set of
+    closed sets in $(X,\ms T)$. Similarly, let $\ms T_A, \ms C_A$.
+
+    Let $B,C \in \ms C_A$ be disjoint. Then by Theorem 4.28, there
+    exist $B', C' \in \ms C_X$ such that
+    \[
+      B = B' \cap A \qquad \qquad \qquad C = C' \cap A.
+    \]
+    Then since $\ms C_X$ is closed under arbitrary intersection, it
+    follows that $B, C$ are closed in $(X, \ms T)$.\footnote{OK, I
+      know I defined $\ms C_X$ above, but I was worried that all the
+      script $C$'s flying around were getting confusing!} Hence by
+    normality, there exist disjoint $U,V \in \ms T_X$ such that $B
+    \subset U$, and $C \subset V$. Note that
+    \[
+      B = (B \cap A) \subset U \cap A \qquad \qquad \qquad C = (C \cap
+      A) \subset V \cap A,
+    \]
+    and $U \cap A$, $V \cap A$ are open sets in $(A, \ms T_A)$. Since
+    they are also disjoint, we see $B,C$ are separated by disjoint
+    open sets in $(A, \ms T_A)$.
+
+    Finally, since $B,C$ were arbitrarily chosen, it follows that $A$
+    is normal with the relative topology.
   \end{solution}
 
 \end{document}
