@@ -13,24 +13,18 @@
 
 \lfoot{Wednesday, March 13th 2019}
 
-\renewcommand{\thesubfigure}{\roman{subfigure}}
+\problems{5.6(4), 5.11, 5.15(no normal), 5.17, 5.23}
+
+\usepackage{hyperref}
+
 \newcommand{\tstd}{\ensuremath \ms T_{\rm std}}
-\let\lunateepsilon\epsilon
-\renewcommand{\epsilon}{\varepsilon}
-\newenvironment{why}{\begin{adjustwidth}{0.01\linewidth}{0.05\linewidth}~}%
-  {\end{adjustwidth}}
 
 \begin{document}
 \pagestyle{plain}
 \pagestyle{fancy}
-  \vspace{-2.9cm}
-  \begin{table}[H]
-    \centering
-    \begin{tabular}{@{}lcccccr@{}}\toprule
-      Problems & 5.6(4) & 5.11 & 5.15(no normal) & 5.17 & 5.23 & Total \\ \midrule
-      Points   &        &      &                 &      &      &       \\ \bottomrule
-    \end{tabular}
-  \end{table}
+  % \vspace{-2.9cm}
+  \pointstable{}
+
   \vspace{1cm}
 
 % --------------------------- Problem 1 ---------------------------- %
@@ -297,23 +291,54 @@
           (b,\infty)$ is open, hence $[a,b]$ is closed. By Theorem
           3.20, we have $\ol{(a,b)} \subset [a,b]$.
         \end{leftbar}
-
+        \begin{remark} \color{red}
+          We actually can't do better than this in the general case.
+          For example, you can find subspaces of the lexicographically
+          ordered square that refuse to play nice. Also, if $X$ is
+          a discrete set (such as $\NN$ or $\ZZ$), plenty of
+          counterexamples exist.
+        \end{remark}
         Let $x \in X$ be arbitrary. Let $U \in \ms T$ such that $x \in
-        U$. Then there exists $\set{B_\alpha}_{\alpha \in \lambda}$
+        U$. Then there exist $a,b \in X\cup \set{-\infty, \infty}$
         such that
         \[
-          U = \bigcup_{\alpha \in \lambda} B_\alpha.
+          x \in (a,b) \subset U.\footnote{Note, this is just a concise
+          way of declaring a basic open set.}
         \]
-        Let $\alpha_0 \in \lambda \st x \in B_{\alpha_0}$. Then there
-        exists $a,b \in X\cup \set{-\infty, \infty}$ such that
-        \[
-          x \in (a,b) \subset B_{\alpha_0}.
-        \]
-        We now have four subcases.
+        \textbf{Claim:} There exists $(a',b') \subset (a,b)$ such that
+        $x \in (a',b') \subset \ol{(a',b')} \subset (a,b)$.
+
+        \textbf{Proof of Claim:} {\color{red} When typing this up, I
+          found a slightly cleaner version of the argument I was using
+          at \url{http://web.math.ku.dk/~moller/e02/3gt/opg/S31.pdf},
+          and have modified my proof accordingly.}
+
+        Let $A = (a, x)$, and $B = (x, b)$. Then we have four
+        subcases.
         \begin{enumerate}[label=\roman*)]
-          \item Suppose there exist no $a',b' \in (a,b)$ such that $x
-            \in (a', b') \subset (a,b)$. Then
+          \item Suppose that $A,B = \varnothing$. Then $(a,b) =
+            \set{x}$, which is clopen. Hence take $(a',b') = (a,b)$,
+            and the claim holds. \cmark
+          \item Suppose $A = \varnothing$ and $B \neq \varnothing$,
+            and let $b' \in B$. Then let $a'=a$, and note $(a',b') =
+            [x, b')$. Hence $x \in (a',b')$, and
+            \[
+              \ol{(a', b')} = \ol{[x, b')} \subset [x,b'] \subset
+              (a,b)
+            \]
+            so the claim holds. \cmark
+          \item Supposet $A \neq \varnothing$ and $B = \varnothing$.
+            The proof is analogous to the above. \cmark
+          \item Suppose $A \neq \varnothing \neq B$. Then let $a' \in
+            A$, $b' \in B$. It follows that
+            \[
+              x \in (a',b') \subset \ol{(a',b')} \subset [a',b']
+              \subset (a,b)
+            \]
+            as desired. \cmark
         \end{enumerate}
+        since these cases are exhaustive, we see $X$ is regular, as
+        desired.
     \end{enumerate}
   \end{solution}
   \clearpage
@@ -323,6 +348,8 @@
     Let $X$ and $Y$ be regular. Then $X \times Y$ is regular.
   \end{problem}
   \begin{solution}
+    Let $p \in X \times Y$ be arbitrary. Let $U \in \ms T_{\rm prod}$
+    such that $x \in U$.
   \end{solution}
   \clearpage
 
