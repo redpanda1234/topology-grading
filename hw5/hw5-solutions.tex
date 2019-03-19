@@ -18,6 +18,7 @@
 \usepackage{hyperref}
 
 \newcommand{\tstd}{\ensuremath \ms T_{\rm std}}
+\newcommand{\tprod}{\ensuremath \ms T_{\rm prod}}
 
 \begin{document}
 \pagestyle{plain}
@@ -77,7 +78,7 @@
     $U,V$ are disjoint open sets containing $A$ and $B$ respectively.
     Since $A,B$ were arbitrarily chosen, it follows that $\RR^2$ is
     normal, as desired.
-    \begin{leftbar}
+    \begin{leftbar}\small %oops don't overflow the page
       \color{red} \textbf{Clarifying Note:} How did we get the final
       inequality? Well, note that
       \[
@@ -348,8 +349,138 @@
     Let $X$ and $Y$ be regular. Then $X \times Y$ is regular.
   \end{problem}
   \begin{solution}
-    Let $p \in X \times Y$ be arbitrary. Let $U \in \ms T_{\rm prod}$
-    such that $x \in U$.
+    We prove a lemma.
+    \begin{leftbar}
+      \begin{lemma}
+        Let $A \subset X$, $B \subset Y$. Then $\ol{A \times B} =
+        \ol{A} \times \ol{B}$.
+      \end{lemma}
+      We use the notation $\mc L(S)$ to denote the limit points of a
+      set $S$. Here're a few proofs:
+      ~
+      \begin{adjustwidth}{.025\linewidth}{.025\linewidth}
+        \color{RedOrange}
+        \begin{boxedminipage}{\linewidth}
+          \emph{Proof 1:} The claim is equivalent to
+          \[
+            p \in \ol{A \times B} \iff p \in \ol{A} \times \ol{B}.
+          \]
+          We proceed by contrapositive. That is,
+          \[
+            p \not\in \ol{A \times B} \iff p \not \in \ol{A} \times
+            \ol{B}.\footnote{Note, this is just saying that the set
+              complements are equal.}
+          \]
+          We prove both directions simultaneously.\footnote{This
+            introduces a mess with variable quantifications, but
+            hopefully the argument makes sense} The following are
+          equivalent:
+          \begin{enumerate}[label=(\arabic*)]
+            \item $p = (p_x, p_y) \not\in \ol{A\times B}$
+            \item There exists $U \in \ms \tprod \st p \in U$ and $(U
+              - \set{p}) \cap (A \times B) = \varnothing$
+            \item For $U$ quantified as above, there exists $B = U_A
+              \times U_B \in \ms B_{\rm prod}$ such that $p \in B$,
+              and
+              \begin{align*}
+                \varnothing
+                &= B \cap (A \times B) \\
+                &= (U_A \times U_B) \cap (A \times B) \\
+                &= (U_A \cap A) \times (U_B \cap B).
+              \end{align*}
+            \item There exists $U_A \in \ms T_A$, $U_B \in \ms T_B$
+              such that at least one of $(U_A \cap A),\ (U_B \cap B)$
+              is empty
+            \item At least one of $p_x \not \in \ol{A},\ p_y \not \in
+              \ol{B}$ is true
+            \item $p \not \in \ol{A} \times \ol{B}$
+          \end{enumerate}
+          \hfill $\square$
+        \end{boxedminipage}
+      \end{adjustwidth}
+      \begin{adjustwidth}{.025\linewidth}{.025\linewidth}
+        \color{TealBlue}
+        \begin{boxedminipage}{\linewidth}
+          \emph{Proof 2:} We prove the claim directly.
+          \begin{seteqproof}
+            \item Let $p = (p_A, p_B) \in \ol{A \times B}$. We want to
+              show $p_A \in \ol{A}$ or $p_B \in \ol{B}$.\footnote{The
+                or here is inclusive.}
+              \begin{enumerate}[label=(\arabic*)]
+                \item Suppose $p \in A \times B$. Then we're done.
+                  \cmark
+                \item Now, suppose $p \in \mc L(A \times B).$ Let $U_A
+                  \in \ms T_A$ and $U_B \in \ms T_B$ be arbitrarily
+                  chosen. Then $U = U_A \times U_B \in \tprod$, and
+                  hence
+                  \[
+                    (U - \set{p}) \cap (A \times B) \neq \varnothing
+                  \]
+                  Thus, let $q = (q_A, q_B) \in (U - \set{p}) \cap (A
+                  \times B)$. It follows that
+                  \[
+                    \pi_x(q) \in (\pi_x(U - \set{p}) \cap \pi_x(A
+                    \times B))
+                  \]
+                  or equivalently,
+                  \[
+                    q_A \in (U_A - \set{p_A}) \cap A
+                  \]
+                  and similarly, $q_B \in (U_B - \set{p_B}) \cap B$.
+                  Hence, $\ol{A \times B} \subset \ol{A} \times
+                  \ol{B}$. \cmark
+              \end{enumerate}
+            \item The reverse direction essentially consists of
+              reversing the steps above. Note, you need to consider
+              both of the cases $p \in \mc L(A) \times B$ and $p \in A
+              \times \mc L(B)$.
+          \end{seteqproof}
+          \hfill $\square$
+        \end{boxedminipage}
+      \end{adjustwidth}
+      \begin{adjustwidth}{.025\linewidth}{.025\linewidth}
+        \color{Magenta}
+        \begin{boxedminipage}{\linewidth}
+          \emph{Proof 3:} We prove the two directions separately.
+          \begin{seteqproof}
+            \item The product of closed sets is closed.\footnote{As
+                justification, note that $(\ol{A})^c \times
+                (\ol{B})^c$ is a product of open sets, and is thus
+                open in $\tprod$, hence $\ol{A} \times \ol{B}$ is
+                closed.} Since $A \times B \subset \ol{A} \times
+              \ol{B}$, Theorem 3.20 implies
+              \[
+                \ol{A \times B} \subset \ol{\ol{A} \times \ol{B}} =
+                \ol{A} \times \ol{B}.
+              \]
+            \item Use either of the arguments above.
+          \end{seteqproof}
+          \hfill $\square$
+        \end{boxedminipage}
+      \end{adjustwidth}
+    \end{leftbar}
+    We proceed by Theorem 5.8.
+
+    Let $p \in X \times Y$ be arbitrary, and let $U \in \ms T_{\rm
+      prod}$ such that $p \in U$. Then by definition of $\ms T_{\rm
+      prod}$, there exist $U_X \in \ms T_X$, $U_Y \in \ms T_Y$ such
+    that
+    \[
+      p \in U_X \times U_Y \subset U.
+    \]
+    Since $X,Y$ are regular, there exist $V_X \in \ms T_X$, $V_Y \in
+    \ms T_Y$ such that
+    \[
+      \pi_x(p) \in V_X \subset \ol{V_X} \subset B_X \qquad\quad
+      \text{and} \quad\qquad \pi_y(p) \in V_Y \subset \ol{V_Y} \subset
+      B_Y.
+    \]
+    Thus $p \in V_X \times V_Y$, which is open in $\tprod$. Then
+    \[
+      p \in V_X \times V_Y \subset \ol{V_X \times V_Y} = \ol{V_X}
+      \times \ol{V_Y} \subset B_X \times B_Y \subset U
+    \]
+    so by Theorem 5.8, $X \times Y$ is regular.
   \end{solution}
   \clearpage
 
