@@ -45,7 +45,7 @@
     \emph{Main Proof:} Let $A,B$ be disjoint closed subsets of
     $\RR^2$. For each $a\in A$, $b\in B$, let
     \begin{align*}
-      \epsilon_a &= \frac{d(a,B)}{3} & \epsilon_b &= \frac{d(b,A)}{3}
+      \epsilon_a &= \frac{d(a,B)}{2} & \epsilon_b &= \frac{d(b,A)}{2}
     \end{align*}
     and note that by part (1), $\epsilon_a, \epsilon_b > 0$. Define
     \begin{align*}
@@ -61,23 +61,26 @@
     \begin{align*}
       d(a,b)
       &\leq d(a,x) + d(x,b) \tag{$\star$}\\
-      &\leq \epsilon_a + \epsilon_b
+      &< \epsilon_a + \epsilon_b
     \end{align*}
     WLOG, suppose $\epsilon_b \leq \epsilon_a$. Then
     \begin{align*}
       d(a,b)
-      &\leq 2\epsilon_a \\
-      &= \frac{2}{3} d(a,B)  \\
-      &< d(a,b)
+      &< 2\epsilon_a \\
+      &= d(a,B)  \\
+      &\leq d(a,b)
     \end{align*}
-    a contradiction.\footnote{Note, here our contradiction is $d(a,b)
-      < d(a,b)$. But we could also just skip ($\star$), and directly
+    so $d(a,b) < d(a,b)$, a contradiction.\footnote{The align
+      environment given should be read as ``$d(a,b) < 2\epsilon_a =
+      d(a,B) \leq d(a,b)$,'' not as $d(a,b) < 2\epsilon_a$, $d(a,b) =
+      d(a,B)$, and so on. Also, here our contradiction is $d(a,b) <
+      d(a,b)$, but we could also just skip ($\star$) and directly
       contradict the triangle inequality by $d(a,x) + d(x,b) <
       d(a,b)$. I prefer the former, just because it better matches
-      arguments seen in Analysis.} Hence, $U \cap V = \varnothing$, so
-    $U,V$ are disjoint open sets containing $A$ and $B$ respectively.
-    Since $A,B$ were arbitrarily chosen, it follows that $\RR^2$ is
-    normal, as desired.
+      arguments seen in Analysis.}
+    Hence, $U \cap V = \varnothing$, so $U,V$ are disjoint open sets
+    containing $A$ and $B$ respectively. Since $A,B$ were arbitrarily
+    chosen, it follows that $\RR^2$ is normal, as desired.
     \begin{leftbar}\small %oops don't overflow the page
       \color{red} \textbf{Clarifying Note:} How did we get the final
       inequality? Well, note that
@@ -87,7 +90,7 @@
       hence for all $b' \in B$, $d(a,B) \leq d(a,b')$. Since $d(a,B) >
       0$, it follows that for all $b' \in B$,
       \[
-        \frac{2}{3}d(a,B) < d(a,b').
+        d(a,B) \leq d(a,b').
       \]
     \end{leftbar}
   \end{solution}
