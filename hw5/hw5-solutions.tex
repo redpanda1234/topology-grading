@@ -288,6 +288,12 @@
       \item We apply Theorem 5.1. Let $x \in X$ be arbitrary. Then
         $(-\infty, x) \cup (x, \infty)$ is open. By complement,
         $\set{x}$ is closed, hence $(X,\ms T)$ is $T_1$.
+        \begin{remark}
+          {\color{red} By Theorem 5.7.2, we actually just need to show
+            regularity now that we have $T_1$. But in case you'd like
+            to show Hausdorff constructively for extra practice, I've
+            included a proof of Hausdorffness below.}
+        \end{remark}
       \item WLOG, suppose $x < y$. We proceed by casework.
         \begin{enumerate}[label=(\roman*)]
           \item Suppose there exists $z \in X$ such that $x < z < y$.
@@ -298,42 +304,31 @@
             $y \in V$.
         \end{enumerate}
         hence $(X, \ms T)$ is Hausdorff.
-        \begin{remark}
-          {\color{red} By Theorem 5.7.2, we actually just need to show
-          regularity now that we have $T_1$. But in case you'd like to
-          show Hausdorff constructively for extra practice, this is
-          one way you might do it.
+        \begin{figure}[H]
+          \centering
+          \begin{tikzpicture}
+            \fill[opacity=.2, blue, rounded corners=.75ex] (-1, -15pt) -- (5.9, -15pt) -- (5.9, -21pt) -- (-1, -21pt) -- cycle;
+            \fill[opacity=.2, red, rounded corners=.75ex] (1, 15pt) -- (-5.9, 15pt) -- (-5.9, 21pt) -- (1, 21pt) -- cycle;
 
-          Also, here's a graphic of tenuous worth to ``help''
-          illustrate subcase (ii):}
-          \begin{figure}[H]
-            \centering
-            \begin{tikzpicture}
-              \fill[opacity=.2, blue, rounded corners=.75ex] (-1, -15pt) -- (5.9, -15pt) -- (5.9, -21pt) -- (-1, -21pt) -- cycle;
-              \fill[opacity=.2, red, rounded corners=.75ex] (1, 15pt) -- (-5.9, 15pt) -- (-5.9, 21pt) -- (1, 21pt) -- cycle;
+            \draw[latex-] (-6,0) -- (-1,0);
+            \draw[-latex] (1,0) -- (6,0);
+            \foreach \x in  {-5,-3,3,5}{
+              \draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
+            }
 
-              \draw[latex-] (-6,0) -- (-1,0);
-              \draw[-latex] (1,0) -- (6,0);
-              \foreach \x in  {-5,-3,3,5}{
-                \draw[shift={(\x,0)},color=black] (0pt,3pt) -- (0pt,-3pt);
-              }
+            \draw[shift={(-1,0)}, color=black] (0pt,3pt) -- (0pt,-3pt) node[below]
+            {\color{red} $x$};
+            \draw[shift={(1,0)}, color=black] (0pt,3pt) -- (0pt,-3pt) node[below]
+            {\color{blue} $y$};
 
-              \draw[shift={(-1,0)}, color=black] (0pt,3pt) -- (0pt,-3pt) node[below]
-              {\color{red} $x$};
-              \draw[shift={(1,0)}, color=black] (0pt,3pt) -- (0pt,-3pt) node[below]
-              {\color{blue} $y$};
+            \draw[{(-[}, dashed, thick, blue] (-1,-18pt) -- (1.075,-18pt);
+            \draw[{-latex}, thick, blue] (1,-18pt) -- (6,-18pt);
+            \draw[{(-[}, dashed, thick, red] (1,18pt) -- (-1.075,18pt);
+            \draw[{-latex}, thick, red] (-1,18pt) -- (-6,18pt);
 
-              \draw[{(-[}, dashed, thick, blue] (-1,-18pt) -- (1.075,-18pt);
-              \draw[{-latex}, thick, blue] (1,-18pt) -- (6,-18pt);
-              \draw[{(-[}, dashed, thick, red] (1,18pt) -- (-1.075,18pt);
-              \draw[{-latex}, thick, red] (-1,18pt) -- (-6,18pt);
-
-            \end{tikzpicture}
-            \caption{Subcase (ii)}
-          \end{figure}
-          {\color{red} Note the gap between $x$ and $y$. $U$ is the
-            top interval, $V$ is the bottom one.}
-        \end{remark}
+          \end{tikzpicture}
+          \caption{Subcase (ii). Note the gap between $x$ and $y$.}
+        \end{figure}
       \item To show regularity, we will employ Theorem 5.8. But first,
         a small Lemma.
         \begin{leftbar}
