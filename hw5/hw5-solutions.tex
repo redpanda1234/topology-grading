@@ -81,18 +81,6 @@
     Hence, $U \cap V = \varnothing$, so $U,V$ are disjoint open sets
     containing $A$ and $B$ respectively. Since $A,B$ were arbitrarily
     chosen, it follows that $\RR^2$ is normal, as desired.
-    \begin{leftbar}\small %oops don't overflow the page
-      \color{red} \textbf{Clarifying Note:} How did we get the final
-      inequality? Well, note that
-      \[
-        d(a,B) = \inf_{b \in B} d(a,b)
-      \]
-      hence for all $b' \in B$, $d(a,B) \leq d(a,b')$. Since $d(a,B) >
-      0$, it follows that for all $b' \in B$,
-      \[
-        d(a,B) \leq d(a,b').
-      \]
-    \end{leftbar}
   \end{solution}
   \clearpage
 
@@ -104,7 +92,10 @@
     $U', V'$ such that $\ol{U'} \subset U$ and $\ol{V'} \subset V$,
     and $U' \cup V' = X$.
   \end{problem}
-  \begin{solution}
+  \quad\
+  I'll provide two solutions: one using Theorem 5.9, another using
+  Theorem 5.10.
+  \begin{solution}[Solution 1:]
     First, we prove a lemma.\footnote{I'm just proving it as a lemma
       so that I can offer two proofs. In an actual writeup, I'd just
       use one of them.} The $(\implies)$ direction will follow as a
@@ -120,8 +111,8 @@
       I'll provide two proofs. The first uses theorem 5.9 (and is
       hence \emph{much} cleaner), while the second uses the definition
       of normality (and is hence much longer / more involed). I
-      included both, so that people who tried to use normality could
-      see how to proceed.
+      included both, so that people who tried to use normality
+      directly could see how to proceed.
 
       \begin{adjustwidth}{.025\linewidth}{.025\linewidth}
         \color{RedOrange}
@@ -176,9 +167,9 @@
         $(V, U')$, we obtain the desired $V'$. \cmark
 
       \item Suppose that $\forall U,V \in \ms T \st U \cup V = X$,
-        there exists $U', V' \st \ol{U'} \subset U$, $\ol{V'} \subset
-        V$, and $U' \cup V' = X$. WTS $X$ is normal. We will apply
-        Theorem 5.9.
+        there exists $U', V' \in \ms T \st \ol{U'} \subset U$,
+        $\ol{V'} \subset V$, and $U' \cup V' = X$. WTS $X$ is normal.
+        We will apply Theorem 5.9.
 
         Let $A \subset X$ be an arbitrary closed set, and let $U \in
         \ms T$ such that $A \subset U$.\footnote{At least one such $U$
@@ -189,22 +180,85 @@
         \[
           \ol{U'} \subset U \qquad \qquad \qquad \ol{V'} \subset A^c
         \]
-        and $U' \cup V' = X$. Observe that this last condition implies
-        $(U')^c \subset V'$, hence we have
+        and $U' \cup V' = X$. From this it follows that $(U')^c
+        \subset V'$, hence
         \[
-          (U')^c \subset V' \subset \ol{V'} \subset A^c
+          (U')^c \subset V' \subset A^c.
         \]
-        Taking the complement and employing $U' \subset U$, we have
+        Taking the complement, we have
         \[
-          A \subset (\ol{V'})^c \subset (V')^c \subset U' \subset U.
+          A \subset (V')^c \subset U',
         \]
-        Finally, since $\ol{U'} \subset U$, we have
+        and since $\ol{U'} \subset U$, this yields
         \[
           A \subset U' \subset \ol{U'} \subset U
         \]
         as desired. Since $A$ and $U$ were arbitrarily chosen, Theorem
-        5.9 implies $X$ is normal.
+        5.9 implies $X$ is normal. \cmark
     \end{iffproof}
+  \end{solution}
+  \hrulefill
+  \begin{solution}[Solution 2:]
+    We employ Theorem 5.10.
+    \begin{iffproof}
+      \item Suppose $X$ is normal. Let $U,V \in \ms T$ such that $U
+        \cup V = X$. Then $U^c, V^c$ are closed, and by DeMorgan's
+        Laws,
+        \[
+          U^c \cap V^c = (U \cup V)^c = \varnothing,
+        \]
+        hence they are disjoint as well. Then by Theorem 5.10, there
+        exist disjoint $U_0, V_0 \in \ms T$ such that
+        \[
+          U^c \subset U_0\qquad\qquad V^c \subset V_0 \qquad\qquad
+          \ol{U_0} \cap \ol{V_0} = \varnothing.
+        \]
+        Because $U_0 \subset \ol{U_0}$ and $V_0 \subset \ol{V_0}$,
+        taking complements yields
+        \[
+          \pn{\ol{U_0}}^c \subset (U_0)^c \subset U \qquad\qquad
+          \pn{\ol{V_0}}^c \subset (V_0)^c \subset V \qquad\qquad
+          \pn{\ol{U_0}}^c \cup \pn{\ol{V_0}}^c
+          = X.
+        \]
+        Let $U' = \pn{\ol{U_0}}^c$ and $V' =
+        \pn{\ol{V_0}}^c$, and note that these are open. Then
+        the above can be reexpressed as
+        \[
+          U' \subset (U_0)^c \subset U \qquad\qquad V' \subset (V_0)^c
+          \subset V \qquad\qquad U' \cup V' = X,
+        \]
+        and since $(U_0)^c,\ (V_0)^c$ are closed, Theorem 3.20 implies
+        \[
+          U' \subset \ol{U'} \subset (U_0)^c \subset U \qquad\qquad
+          V' \subset \ol{V'} \subset (V_0)^c \subset V
+        \]
+        as desired. \cmark
+      \item Suppose $\forall U,V \in \ms T \st U\cup V = X$, there
+        exists $U', V' \in \ms T \st \ol{U'} \subset U,\ \ol{V'}
+        \subset V$, and $U' \cup V' = X$. WTS $X$ is normal.
+
+        Let $A,B$ be arbitrary disjoint closed sets. Then $U=A^c$,
+        $V=B^c$ are open, and $U\cup V = X$ (DeMorgan's Laws).
+
+        By hypothesis, there exists $U',V' \in \ms T$ such that
+        \[
+          \ol{U'} \subset U \qquad \qquad \ol{V'} \subset V \qquad
+          \qquad U' \cup V' = X.
+        \]
+        Since $U' \subset \ol{U'}$ and $V' \subset \ol{V'}$,
+        complementation yields
+        \[% wao I love manual horizontal spacing
+          U^c \subset \pn{\ol{U'}}^c \subset (U')^c
+          \qquad\qquad V^c \subset \pn{\ol{V'}}^c \subset
+          (V')^c \qquad\qquad (U')^c \cap (V')^c
+          = \varnothing.
+        \]
+        Finally, substituting $U^c = A$ and $V^c = B$, we see
+        $\pn{\ol{U'}}^c$, $\pn{\ol{V'}}^c$ are disjoint open
+        sets separating $A$ and $B$. Thus $X$ is normal, as desired.
+        \cmark
+      \end{iffproof}
   \end{solution}
   \clearpage
 
@@ -291,14 +345,15 @@
           3.20, we have $\ol{(a,b)} \subset [a,b]$.
         \end{leftbar}
         \begin{remark} \color{red}
-          We actually can't do better than this in the general case.
-          For example, you can find subspaces of the lexicographically
-          ordered square that refuse to play nice. Also, if $X$ is
-          a discrete set (such as $\NN$ or $\ZZ$), plenty of
-          counterexamples exist.
+          We actually can't do better than this in the general case
+          (i.e., we need not have $\ol{(a,b)} = [a,b]$). For example,
+          you can find subspaces of the lexicographically ordered
+          square that refuse to play nice. Also, if $X$ is a discrete
+          set (such as $\NN$ or $\ZZ$), plenty of counterexamples
+          exist.
         \end{remark}
-        Let $x \in X$ be arbitrary. Let $U \in \ms T$ such that $x \in
-        U$. Then there exist $a,b \in X\cup \set{-\infty, \infty}$
+        Let $x \in X$ be arbitrary, and let $U \in \ms T$ such that $x
+        \in U$. Then there exist $a,b \in X\cup \set{-\infty, \infty}$
         such that
         \[
           x \in (a,b) \subset U.\footnote{Note, this is just a concise
@@ -327,7 +382,12 @@
             \]
             so the claim holds. \cmark
           \item Supposet $A \neq \varnothing$ and $B = \varnothing$.
-            The proof is analogous to the above. \cmark
+            Analogously to the above, we let $a' \in A$ and $b'=b$,
+            which yields
+            \[
+              \ol{(a',b')} = \ol{(a',x]} \subset [a',x] \subset (a,b)
+            \]
+            as desired. \cmark
           \item Suppose $A \neq \varnothing \neq B$. Then let $a' \in
             A$, $b' \in B$. It follows that
             \[
@@ -336,8 +396,8 @@
             \]
             as desired. \cmark
         \end{enumerate}
-        since these cases are exhaustive, we see $X$ is regular, as
-        desired.
+        since these cases are exhaustive, this proves the claim. Then
+        by Theorem 5.8, $X$ is regular, as desired.
     \end{enumerate}
   \end{solution}
   \clearpage
@@ -489,7 +549,8 @@
   \end{problem}
   \begin{solution}
     Let $\ms T_X$ be the topology on $X$, and $\ms C_X$ be the set of
-    closed sets in $(X,\ms T)$. Similarly, let $\ms T_A, \ms C_A$.
+    closed sets in $(X,\ms T)$. Define $\ms T_A, \ms C_A$ analogously
+    for the relative topology on $A$.
 
     Let $B,C \in \ms C_A$ be disjoint. Then by Theorem 4.28, there
     exist $B', C' \in \ms C_X$ such that
@@ -497,21 +558,22 @@
       B = B' \cap A \qquad \qquad \qquad C = C' \cap A.
     \]
     Then since $\ms C_X$ is closed under arbitrary intersection, it
-    follows that $B, C$ are closed in $(X, \ms T)$.\footnote{OK, I
-      know I defined $\ms C_X$ above, but I was worried that all the
-      script $C$'s flying around were getting confusing!} Hence by
-    normality, there exist disjoint $U,V \in \ms T_X$ such that $B
-    \subset U$, and $C \subset V$. Note that
+    follows that $B, C$ are closed in $(X, \ms T)$ as
+    well.\footnote{OK, I know I defined $\ms C_X$ above, but I was
+      worried that all the script $C$'s flying around were getting
+      confusing!} Then by normality, there exist disjoint $U,V \in \ms
+    T_X$ such that $B \subset U$ and $C \subset V$. Observe
     \[
-      B = (B \cap A) \subset U \cap A \qquad \qquad \qquad C = (C \cap
-      A) \subset V \cap A,
+      B = (B \cap A) \subset (U \cap A) \qquad \qquad \qquad C = (C
+      \cap A) \subset (V \cap A),
     \]
-    and $U \cap A$, $V \cap A$ are open sets in $(A, \ms T_A)$. Since
-    they are also disjoint, we see $B,C$ are separated by disjoint
-    open sets in $(A, \ms T_A)$.
-
-    Finally, since $B,C$ were arbitrarily chosen, it follows that $A$
-    is normal with the relative topology.
+    and by definition, $(U \cap A)$, $(V \cap A)$ are open sets in
+    $(A, \ms T_A)$. Since $U \cap V = \varnothing$, we have
+    \[
+      (U\cap A) \cap (V\cap A)= \varnothing
+    \]
+    as well, thus we have found disjoint open sets separating $A,B$.
+    Hence, $A$ is normal with the relative topology, as desired.
   \end{solution}
 
 \end{document}
