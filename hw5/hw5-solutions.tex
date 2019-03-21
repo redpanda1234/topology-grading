@@ -296,12 +296,12 @@
         \end{remark}
       \item WLOG, suppose $x < y$. We proceed by casework.
         \begin{enumerate}[label=(\roman*)]
-          \item Suppose there exists $z \in X$ such that $x < z < y$.
-            Then $U = (-\infty, x)$, $V = (z, \infty)$ are disjoint
-            open sets with $x \in U$, $y \in V$.
-          \item Suppose no such $z$ exists. Then $U = (-\infty, y)$,
-            $V = (x, \infty)$ are disjoint open sets with $x \in U$,
-            $y \in V$.
+          \item Suppose $(x,y) \neq \varnothing$, and let $z \in
+            (x,y)$. Then $U = (-\infty, x)$, $V = (z, \infty)$ are
+            disjoint open sets with $x \in U$, $y \in V$.
+          \item Suppose $(x,y) = \varnothing$. Then $U = (-\infty,
+            y)$, $V = (x, \infty)$ are disjoint open sets with $x \in
+            U$, $y \in V$.
         \end{enumerate}
         hence $(X, \ms T)$ is Hausdorff.
         \begin{figure}[H]
@@ -321,9 +321,9 @@
             \draw[shift={(1,0)}, color=black] (0pt,3pt) -- (0pt,-3pt) node[below]
             {\color{blue} $y$};
 
-            \draw[{(-[}, dashed, thick, blue] (-1,-18pt) -- (1.075,-18pt);
+            \draw[{(-[}, dashed, thick, blue] (-1,-18pt) -- (1.075,-18pt) node[at start, left] {$V$};
             \draw[{-latex}, thick, blue] (1,-18pt) -- (6,-18pt);
-            \draw[{(-[}, dashed, thick, red] (1,18pt) -- (-1.075,18pt);
+            \draw[{(-[}, dashed, thick, red] (1,18pt) -- (-1.075,18pt) node[at start, right] {$U$};
             \draw[{-latex}, thick, red] (-1,18pt) -- (-6,18pt);
 
           \end{tikzpicture}
