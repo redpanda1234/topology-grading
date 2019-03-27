@@ -46,20 +46,92 @@
   \end{problem}
   \begin{leftbar}
     Before a solution, I'll give some intuition on how we might arrive
-    at the candidate $U,V$ that work. Depict our two sets $A,B$ as
+    at the candidate $U,V$ that work.
+
+    Let's think about what we're given. We have $\set{U_i}_{i \in
+      \NN}$, and $\set{V_i}_{i \in \NN}$ as defined above, and we want
+    to use them to construct $U,V$ satisfying the given constraints.
+    It seems like it'd be straightforward to satisfy $A \subset U$, $B
+    \subset V$ --- they look like they'll probably fall directly out
+    of the conditions. $U \cap V = \varnothing$ is harder, since we're
+    given no direct information about $U_i \cap V_j$. Hence, we'll
+    pick the following as our general approach:
+    \begin{enumerate}[label=(\arabic*)]
+      \item Think about what
+        \[
+          \tilde U = \bigcup_{i \in \NN} U_i \qquad\qquad \tilde V =
+          \bigcup_{i \in \NN} V_i
+        \]
+        look like. In particular, we'll focus on the conditions that
+        break/make $\tilde U$ and $\tilde V$ \emph{not} work as
+        choices of $U,V$. Then,
+      \item We'll see if we can find a clever way to remove the parts
+        of $U_i$ and $V_i$ that cause problems. If all goes right,
+        we'll find sequences $\set{U'_i}_{i\in\NN}$,
+        $\set{V'_i}_{i\in\NN}$ whose terms can be unioned to get
+        $U,V$.
+    \end{enumerate}
+    Depict our two sets $A,B$ as
     follows:
     \begin{center}
-      \includegraphics{figures/5-29-AB}
+      \includegraphics[keepaspectratio,width=6cm]{figures/5-29-AB}
     \end{center}
     To make the TikZ easier, I'll draw our covers with boxes --- but
     note, in general they could be blobby. Anyways, we now draw
-    $\ol{U_1}, \ol{V_1}$:
+    $U_1, V_1$:
     \begin{center}
-      \includegraphics{figures/5-29-n=1}
+      \includegraphics[keepaspectratio,width=6cm]{figures/5-29-n=1}
     \end{center}
     We need to be sure that in our construction of $U$, we don't
-    include any of the $V_i$. We want to use the $U_i$ somehow, but as
-    we can see, they might intersect the $V_i$.
+    include any of the $V_i$. We want to use the $U_i$, but as we can
+    see, they might intersect the $V_i$. The fix? Remove the parts
+    that cause problems. We define
+    \begin{align*}
+      U_1'
+      &= U_1 - \ol{V_1}
+      &
+      V_1'
+      &= V_1 - \ol{U_1}
+    \end{align*}
+    which yields
+    \begin{center}
+      \includegraphics[keepaspectratio, width=6cm]{figures/5-29-n=1-primes}
+    \end{center}
+    Now, we consider $n=2$:
+    \begin{center}
+      \includegraphics[keepaspectratio, width=6cm]{figures/5-29-n=2}
+    \end{center}
+    We already know how to rectify $U_1, V_1$:
+    \begin{center}
+      \includegraphics[keepaspectratio, width=6cm]{figures/5-29-n=2-prime1}
+    \end{center}
+    but we still have a problem now. Our addition of $U_2, V_2$ is
+    complicating the situation! Namely, we have $U_2 \cap V'_1 \neq
+    \varnothing$, $U_2 \cap V_2 \neq \varnothing$.\footnote{Note we
+      could also have the analogous for $V_2 \cap U'_1$ if $V_2$ were
+      a bit larger.} We \emph{don't} want to go back and edit our
+    definitions for $U'_1, V'_1$ --- if we were to take this approach,
+    we'd need to proceed similarly for $n=2$, $n=3$, etc.\ until
+    eventually $U'_1 = U_1 - \bigcup_{i\in\NN} \ol{V_i}$, which could
+    cause some problems.
+
+    Instead, we'll modify $U_2$ and $V_2$, leaving $U'_1$ and $V'_1$
+    untouched. Hence, we let
+    \[
+      U'_2 = U_2 - (\ol{V_1} \cup \ol{V_2}) \qquad\qquad
+      V'_2 = V_2 - (\ol{U_1} \cup \ol{U_2})
+    \]
+    which gives us
+    \begin{center}
+      \includegraphics[keepaspectratio, width=6cm]{figures/5-29-n=2-prime2}
+    \end{center}
+    From which we can see $(U'_1 \cup U'_2) \cap (V'_1 \cup V'_2) \neq
+    \varnothing.$ Thus, we conjecture that in the general case,
+    \[
+      U'_n = U_n - \bigcup_{i=1}^n \ol{V_i} \qquad\qquad V'_n = V_n -
+      \bigcup_{i=1}^n \ol{U_i}
+    \]
+    will work.
   \end{leftbar}
   \begin{solution}
 

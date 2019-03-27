@@ -5,4 +5,5 @@
 *.synctex.gz
 *.fdb_latexmk
 *.fls
+hw6/figures/*.pdf
 auto/
