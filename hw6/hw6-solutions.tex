@@ -154,6 +154,43 @@
     The space $2^\RR$ is separable.
   \end{problem}
   \begin{solution}
+    % We first find a candidate countable dense subset.
+    \begin{leftbar}
+      Let
+      \[
+        S = \set{\bigcup_{i=1}^n (p_i, q_i) \MID n \in \NN,\
+          \text{and}\ p_i, q_i \in \QQ \text{ for each $i$}}.
+      \]
+      First, note that the set comprehension above yields at most
+      countably many elements (the set of all finite subsets of a
+      countable set is countable). Hence, $S$ is at most countable.
+
+      Now, note that $S$ has a countably infinite subset:
+      \[
+        S' = \set{(0,q) \MID q \in \QQ} \subset S.
+      \]
+      Thus $S$ is at least countably infinite as well. So $\abs{S} =
+      \abs{\NN}$. \cmark
+    \end{leftbar}
+    Now, let
+    \[
+      \mc F = \set[bigg]{f : \RR \to \set{0,1} \MID f\fpre[\set{1}]
+        \in S}.
+    \]
+    where $f\fpre[\set{1}]$ denotes the preimage of $\set{1}$. Also
+    let
+
+    % We claim $\ol{\mc F} = 2^\RR$.
+
+    Let $U \in \ms T_{2^\RR}$ be arbitrary. Then by definition of the
+    product topology,
+    \[
+      U = \prod_{\xi\in \RR} X_\xi
+    \]
+    where $X_\xi$ is open in $\set{0,1}$ under the discrete topology,
+    and $X_\xi = \set{0,1}$ for all but finitely many $\xi$. Let
+    $\set{X_{\xi_i}}_{i=1}^n$ be this finite collection of $X_\xi$,
+    and for each $i$, let $Y_i = $
   \end{solution}
   \clearpage
 
@@ -163,6 +200,24 @@
     has a limit point.
   \end{problem}
   \begin{solution}
+    Let $(X, \ms T)$ be a 2\textsuperscript{nd} countable space with
+    countable basis $\ms B$, and let $A \subset X$ be uncountable.
+
+    Let $a \in A$. Suppose, to obtain a contradiction, that $A$ has no
+    limit points. Then $a$ is an isolated point of $A$, and by Theorem
+    3.10, there exists $U_a \in \ms T \st U_a \cap A = \set{a}$. Then
+    by definition of a basis, there exists $B_a \in \ms B$ such that
+    \[
+      a \in B_a \subset U_a,
+    \]
+    and hence
+    \[
+      B_a \cap A = \set{a}
+    \]
+    as well. It follows that $\ms B' = \set{B_a}_{a \in A}$ is an
+    uncountable subset of $\ms B$, a contradiction.
+
+    Thus, $A$ has a limit point.
   \end{solution}
   \clearpage
 
