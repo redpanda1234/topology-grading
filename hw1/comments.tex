@@ -287,12 +287,12 @@ making judicious use of whitespace! Some tips:
   topline = false, % no frame at top
   rightline = false, % no frame at right
   bottomline = false % no frame at bottom
-  ]{leftbar}\end{lstlisting}\vspace{-3em}
+  ]{leftbar}\end{lstlisting}
     And you can use the leftbar environment like so:
     \begin{lstlisting}
 \begin{leftbar}
   This text is in a leftbar environment
-\end{leftbar}\end{lstlisting}\vspace{-3em}
+\end{leftbar}\end{lstlisting}
 \end{enumerate}
 \subsubsection{Visual cues --- common proof types}
 For multi-part proofs, it's super helpful to use visual cues instead of verbal
@@ -338,7 +338,7 @@ for each one. For each of the following, note that using \cmark is optional,
 \AddEnumerateCounter{\iffenum}{\@iffenum}{$(\Rightarrow):$}
 \newenvironment{iffproof}{%
   \begin{enumerate}[label=\iffenum*, leftmargin=4em]%
-  }{\end{enumerate}}\end{lstlisting}\vspace{-3em}
+  }{\end{enumerate}}\end{lstlisting}
   With this, creating the iff portion of the proof above was as simple as
   \begin{lstlisting}
 \begin{iffproof}
@@ -346,7 +346,7 @@ for each one. For each of the following, note that using \cmark is optional,
     $B$. \cmark
   \item Suppose $B$. Then [\ldots also lots of math happening here! \ldots],
     therefore $A$.
-\end{iffproof}\end{lstlisting}\vspace{-3em}
+\end{iffproof}\end{lstlisting}
   Where \verb|\cmark| requires the \texttt{pifont} package and is defined
   by\\
   \verb|\newcommand{\cmark}{\text{\ding{51}}}|.
@@ -374,7 +374,7 @@ for each one. For each of the following, note that using \cmark is optional,
 \AddEnumerateCounter{\seteqenum}{\@seteqenum}{$(\subset):$}
 \newenvironment{seteqproof}{%
   \begin{enumerate}[label=\seteqenum*, leftmargin=4em]%
-  }{\end{enumerate}}\end{lstlisting}\vspace{-3em}
+  }{\end{enumerate}}\end{lstlisting}
 \item When doing a proof with casework, you should format this as follows:
   \begin{leftbar}
     Suppose $A$. We want to show $B$. We have the following cases:
@@ -403,7 +403,7 @@ for each one. For each of the following, note that using \cmark is optional,
     \end{enumerate}
     Since these cases are exhaustive, $B$. \cmark
   \item Suppose (case 3). Then [\ldots] $B$. \cmark
-\end{enumerate}\end{lstlisting}\vspace{-3em}
+\end{enumerate}\end{lstlisting}
   By contrast, you should not do the following:
   \begin{leftbar}
     Suppose $A$. We want to show $B$. First, if (case 1), then [\ldots] $B$. $B$
@@ -925,8 +925,8 @@ Ok, onwards to the grading comments.
   \begin{lstlisting}
 % Use a better script font
 \usepackage[mathscr]{euscript}
-\newcommand*{\ms}[1]{\ensuremath{\mathscr{#1}}}\end{lstlisting}\vspace{-3em}
-  which you can then call simply by \texttt{\ms T}.
+\newcommand*{\ms}[1]{\ensuremath{\mathscr{#1}}}\end{lstlisting}
+  which you can then call simply by \verb|\ms T|.
 \end{problem}
 \begin{problem}[C2]
   I saw a lot of people using $B(p, r)$ (or was it $B(r,p)$?) to denote ``the
